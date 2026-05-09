@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Georgios Nikitas — Software Solutions for Individuals & Small Businesses</title>
+  <meta name="description" content="Independent software studio by Georgios Nikitas. Downloadable software and SaaS tools for individuals and small businesses." />
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: #12151c;
+      --panel-2: #181c25;
+      --text: #e7ebf2;
+      --muted: #9aa3b2;
+      --accent: #6ee7b7;
+      --accent-2: #60a5fa;
+      --border: #232836;
+      --radius: 14px;
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #0e1118 0%, var(--bg) 100%);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .brand { font-weight: 700; font-size: 18px; letter-spacing: .2px; }
+    .brand span { color: var(--accent); }
+    nav ul {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; gap: 18px; flex-wrap: wrap;
+    }
+    nav a { color: var(--muted); font-size: 14px; }
+    nav a:hover { color: var(--text); text-decoration: none; }
+
+    .hero { padding: 72px 0 48px; }
+    .hero h1 {
+      font-size: clamp(28px, 4.5vw, 44px);
+      line-height: 1.15; margin: 0 0 16px; letter-spacing: -.5px;
+    }
+    .hero p { color: var(--muted); font-size: 18px; max-width: 720px; margin: 0 0 28px; }
+    .cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #06281d;
+      padding: 12px 18px; border-radius: 999px;
+      font-weight: 600; font-size: 15px;
+    }
+    .cta.secondary {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    section { padding: 56px 0; border-top: 1px solid var(--border); }
+    section h2 {
+      font-size: clamp(22px, 3vw, 30px);
+      margin: 0 0 8px; letter-spacing: -.3px;
+    }
+    section .lede { color: var(--muted); margin: 0 0 32px; max-width: 720px; }
+
+    .grid {
+      display: grid; gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex; flex-direction: column;
+    }
+    .card h3 { margin: 0 0 6px; font-size: 20px; }
+    .card .price {
+      font-size: 28px; font-weight: 700; color: var(--accent);
+      margin: 8px 0 4px;
+    }
+    .card .price small { font-size: 13px; color: var(--muted); font-weight: 500; }
+    .card .tag {
+      display: inline-block;
+      background: var(--panel-2);
+      color: var(--muted);
+      padding: 3px 10px; border-radius: 999px;
+      font-size: 12px; margin-bottom: 10px;
+      border: 1px solid var(--border);
+    }
+    .card ul { padding-left: 18px; margin: 12px 0 18px; color: var(--muted); }
+    .card ul li { margin-bottom: 4px; }
+    .card .actions {
+      margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 14px; border-radius: 10px;
+      font-size: 14px; font-weight: 600;
+      border: 1px solid var(--border); color: var(--text);
+      background: var(--panel-2);
+    }
+    .btn.primary { background: var(--accent); color: #06281d; border-color: transparent; }
+    .btn:hover { text-decoration: none; filter: brightness(1.08); }
+
+    .video-wrap {
+      position: relative; padding-top: 56.25%;
+      border-radius: var(--radius); overflow: hidden;
+      background: #000; border: 1px solid var(--border);
+      margin-top: 14px;
+    }
+    .video-wrap iframe,
+    .video-wrap video {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+    }
+    .video-placeholder {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 14px; text-align: center; padding: 16px;
+    }
+
+    .pricing-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .pricing-table th, .pricing-table td {
+      padding: 14px 16px; text-align: left;
+      border-bottom: 1px solid var(--border); font-size: 15px;
+    }
+    .pricing-table th { background: var(--panel-2); color: var(--muted); font-weight: 600; }
+    .pricing-table tr:last-child td { border-bottom: 0; }
+
+    .about p, .faq p { color: var(--muted); }
+    .faq details {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 18px; margin-bottom: 12px;
+    }
+    .faq summary { cursor: pointer; font-weight: 600; color: var(--text); }
+    .faq details[open] { background: var(--panel-2); }
+
+    .contact-grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .contact-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px;
+    }
+    .contact-card .label { color: var(--muted); font-size: 13px; margin-bottom: 4px; }
+    .contact-card .value { font-weight: 600; word-break: break-all; }
+
+    footer {
+      padding: 32px 0 48px; color: var(--muted);
+      font-size: 13px; border-top: 1px solid var(--border);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">Georgios Nikitas <span>Software</span></div>
+      <nav>
+        <ul>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#demos">Demos</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="border-top: 0;">
+      <div class="container">
+        <h1>Practical software for individuals and small businesses.</h1>
+        <p>
+          I am an independent developer building focused, affordable tools — sold as
+          one-time downloadable software and lightweight SaaS applications. Each
+          product is designed to do one job well, with transparent pricing and a
+          clear license.
+        </p>
+        <div class="cta-row">
+          <a class="cta" href="#products">View products</a>
+          <a class="cta secondary" href="#demos">Watch demos</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <h2>Products</h2>
+        <p class="lede">
+          Two products are currently available. Both are sold as single, one-time
+          purchases (no subscription) and delivered through Lemon Squeezy.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Downloadable software · One-time purchase</span>
+            <h3>Brain Break</h3>
+            <div class="price">$9.99 <small>USD · one-time</small></div>
+            <p style="color: var(--muted); margin: 6px 0 0;">
+              A small desktop utility that helps individuals take healthier,
+              well-timed breaks during long work sessions.
+            </p>
+            <ul>
+              <li>Customizable break intervals and reminders</li>
+              <li>Lightweight, runs locally on the user's machine</li>
+              <li>Single-user personal license, lifetime updates for the version purchased</li>
+            </ul>
+            <div class="actions">
+              <a class="btn primary" href="#pricing">See pricing</a>
+              <a class="btn" href="https://github.com/georgiosnikitas/brain-break" target="_blank" rel="noopener">Source / details</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <span class="tag">SaaS / web application · One-time license</span>
+            <h3>Auto Garage</h3>
+            <div class="price">$49 <small>USD · one-time</small></div>
+            <p style="color: var(--muted); margin: 6px 0 0;">
+              A simple management tool for independent auto garages and small
+              workshops to track vehicles, customers, and service jobs.
+            </p>
+            <ul>
+              <li>Customer and vehicle records</li>
+              <li>Service job tracking and history</li>
+              <li>Single-business license, intended for small workshops</li>
+            </ul>
+            <div class="actions">
+              <a class="btn primary" href="#pricing">See pricing</a>
+              <a class="btn" href="https://github.com/georgiosnikitas/auto-garage" target="_blank" rel="noopener">Source / details</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <h2>Pricing</h2>
+        <p class="lede">
+          All products are sold as single, one-time purchases. There are no
+          recurring subscription fees. Prices are in USD and exclude any local
+          taxes that may be applied at checkout.
+        </p>
+
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Type</th>
+              <th>License</th>
+              <th>Billing</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Brain Break</td>
+              <td>Downloadable software</td>
+              <td>Single user, personal use</td>
+              <td>One-time</td>
+              <td>$9.99</td>
+            </tr>
+            <tr>
+              <td>Auto Garage</td>
+              <td>SaaS / web application</td>
+              <td>Single small business</td>
+              <td>One-time</td>
+              <td>$49.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="demos">
+      <div class="container">
+        <h2>Product demos</h2>
+        <p class="lede">
+          Short walkthrough videos showing the main features of each product.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Brain Break — demo</h3>
+            <div class="video-wrap">
+              <!-- Replace src with your YouTube/Vimeo embed URL or a self-hosted MP4 -->
+              <div class="video-placeholder">Demo video coming soon — embed will be added here.</div>
+              <!--
+              <iframe
+                src="https://www.youtube.com/embed/REPLACE_WITH_VIDEO_ID"
+                title="Brain Break demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+              -->
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Auto Garage — demo</h3>
+            <div class="video-wrap">
+              <div class="video-placeholder">Demo video coming soon — embed will be added here.</div>
+              <!--
+              <iframe
+                src="https://www.youtube.com/embed/REPLACE_WITH_VIDEO_ID"
+                title="Auto Garage demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+              -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <h2>About this business</h2>
+        <p>
+          This is an independent, one-person software studio run by Georgios
+          Nikitas. Products are designed, built, and supported personally.
+        </p>
+        <p>
+          <strong style="color: var(--text);">What is sold:</strong> Small,
+          self-contained software products. Some are downloadable desktop
+          utilities (such as Brain Break), others are lightweight web/SaaS
+          applications (such as Auto Garage).
+        </p>
+        <p>
+          <strong style="color: var(--text);">How they are made and licensed:</strong>
+          Each product is developed in-house. Buyers receive a non-transferable
+          license to use the software for the intended scope (single user for
+          personal tools, single small business for business tools). Source
+          code stays under the developer's ownership.
+        </p>
+        <p>
+          <strong style="color: var(--text);">Who they are for:</strong>
+          Individuals looking for simple personal-productivity tools, and
+          small businesses (such as independent auto garages) that need a
+          straightforward, affordable management tool without the complexity
+          or recurring cost of larger platforms.
+        </p>
+        <p>
+          <strong style="color: var(--text);">Billing model:</strong> All
+          current products are single one-time purchases. No subscriptions are
+          offered today. If a subscription product is ever introduced, it will
+          be clearly listed on this page with its own pricing.
+        </p>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2>FAQ</h2>
+        <details>
+          <summary>How is the software delivered?</summary>
+          <p>
+            After checkout on Lemon Squeezy, buyers receive a download link
+            (for downloadable products) or sign-in details (for the web app)
+            by email.
+          </p>
+        </details>
+        <details>
+          <summary>Are there refunds?</summary>
+          <p>
+            Refund requests are handled on a case-by-case basis within a
+            reasonable window after purchase, in line with Lemon Squeezy's
+            policies.
+          </p>
+        </details>
+        <details>
+          <summary>Is support included?</summary>
+          <p>
+            Yes — email support is included for setup questions and bug
+            reports. Use the contact details below.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2>Contact &amp; links</h2>
+        <p class="lede">
+          For sales questions, support, or KYB/KYC verification, please use
+          the channels below.
+        </p>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="label">Email</div>
+            <div class="value"><a href="mailto:hello@example.com">hello@example.com</a></div>
+          </div>
+          <div class="contact-card">
+            <div class="label">GitHub</div>
+            <div class="value"><a href="https://github.com/georgiosnikitas" target="_blank" rel="noopener">github.com/georgiosnikitas</a></div>
+          </div>
+          <div class="contact-card">
+            <div class="label">LinkedIn</div>
+            <div class="value"><a href="#" target="_blank" rel="noopener">Add your LinkedIn URL</a></div>
+          </div>
+          <div class="contact-card">
+            <div class="label">X / Twitter</div>
+            <div class="value"><a href="#" target="_blank" rel="noopener">Add your X URL</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="y"></span> Georgios Nikitas. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
