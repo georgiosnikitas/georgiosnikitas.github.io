@@ -29,18 +29,32 @@
     }
     a { color: var(--accent-2); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
     .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
     header {
-      padding: 28px 0;
+      position: sticky; top: 0; z-index: 100;
+      padding: 14px 0;
       border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, #0e1118 0%, var(--bg) 100%);
+      background: rgba(11, 13, 18, 0.85);
+      backdrop-filter: saturate(140%) blur(10px);
+      -webkit-backdrop-filter: saturate(140%) blur(10px);
     }
     .nav {
       display: flex; align-items: center; justify-content: space-between;
       gap: 16px; flex-wrap: wrap;
     }
-    .brand { font-weight: 700; font-size: 18px; letter-spacing: .2px; }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 18px; letter-spacing: .2px;
+    }
+    .brand-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
     .brand span { color: var(--accent); }
     nav ul {
       list-style: none; margin: 0; padding: 0;
@@ -144,6 +158,18 @@
     .pricing-table tr:last-child td { border-bottom: 0; }
 
     .about p, .faq p { color: var(--muted); }
+    .about-header {
+      display: flex; align-items: center; gap: 18px;
+      margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .about-header h2 { margin: 0; }
+    .avatar {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+    }
     .faq details {
       background: var(--panel); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 14px 18px; margin-bottom: 12px;
@@ -172,10 +198,14 @@
 <body>
   <header>
     <div class="container nav">
-      <div class="brand">Georgios Nikitas <span>Software</span></div>
+      <div class="brand">
+        <img class="brand-avatar" src="avatar.png" alt="" width="32" height="32" />
+        Georgios Nikitas <span>Software</span>
+      </div>
       <nav>
         <ul>
           <li><a href="#products">Products</a></li>
+          <li><a href="#product-details">Details</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#demos">Demos</a></li>
           <li><a href="#about">About</a></li>
@@ -190,10 +220,10 @@
       <div class="container">
         <h1>Practical software for individuals and small businesses.</h1>
         <p>
-          I am an independent developer building focused, affordable tools — sold as
-          one-time downloadable software and lightweight SaaS applications. Each
-          product is designed to do one job well, with transparent pricing and a
-          clear license.
+          I'm an indie software maker shipping small, focused products in my
+          own time — sold as one-time downloadable software and lightweight
+          web applications. Each one is designed to do one job well, with
+          transparent pricing and a clear license.
         </p>
         <div class="cta-row">
           <a class="cta" href="#products">View products</a>
@@ -206,46 +236,70 @@
       <div class="container">
         <h2>Products</h2>
         <p class="lede">
-          Two products are currently available. Both are sold as single, one-time
-          purchases (no subscription) and delivered through Lemon Squeezy.
+          Three products are currently available or in active development.
+          All are sold as single, one-time purchases (no subscription) and
+          delivered through Lemon Squeezy.
         </p>
 
         <div class="grid">
           <article class="card">
-            <span class="tag">Downloadable software · One-time purchase</span>
+            <span class="tag">CLI application · One-time purchase</span>
             <h3>Brain Break</h3>
-            <div class="price">$9.99 <small>USD · one-time</small></div>
+            <div class="price">€9.99 <small>EUR · one-time</small></div>
             <p style="color: var(--muted); margin: 6px 0 0;">
-              A small desktop utility that helps individuals take healthier,
-              well-timed breaks during long work sessions.
+              An AI-powered terminal quiz app. Define quiz domains, answer
+              AI-generated questions, and track your progress — all from a CLI.
             </p>
             <ul>
-              <li>Customizable break intervals and reminders</li>
-              <li>Lightweight, runs locally on the user's machine</li>
+              <li>Works with OpenAI, Anthropic, Gemini, GitHub Copilot, Ollama, or any OpenAI-compatible endpoint</li>
+              <li>Domain-based quizzes with adaptive difficulty and scoring</li>
               <li>Single-user personal license, lifetime updates for the version purchased</li>
             </ul>
             <div class="actions">
               <a class="btn primary" href="#pricing">See pricing</a>
-              <a class="btn" href="https://github.com/georgiosnikitas/brain-break" target="_blank" rel="noopener">Source / details</a>
+              <a class="btn" href="#brain-break-details">Learn more</a>
+              <a class="btn" href="#demos">Live demo</a>
             </div>
           </article>
 
           <article class="card">
-            <span class="tag">SaaS / web application · One-time license</span>
-            <h3>Auto Garage</h3>
-            <div class="price">$49 <small>USD · one-time</small></div>
+            <span class="tag">Mobile app · Coming soon</span>
+            <h3>Brain Break Mobile</h3>
+            <div class="price">€19.99 <small>EUR · one-time</small></div>
             <p style="color: var(--muted); margin: 6px 0 0;">
-              A simple management tool for independent auto garages and small
-              workshops to track vehicles, customers, and service jobs.
+              The same AI-powered quiz experience as Brain Break, reimagined
+              for iOS and Android. Sold as a separate product.
             </p>
             <ul>
-              <li>Customer and vehicle records</li>
-              <li>Service job tracking and history</li>
-              <li>Single-business license, intended for small workshops</li>
+              <li>Same feature set as the CLI version (providers, domains, scoring, coach…)</li>
+              <li>Native mobile UI built with React Native / Expo</li>
+              <li>Single-user personal license, lifetime updates for the version purchased</li>
             </ul>
             <div class="actions">
               <a class="btn primary" href="#pricing">See pricing</a>
-              <a class="btn" href="https://github.com/georgiosnikitas/auto-garage" target="_blank" rel="noopener">Source / details</a>
+              <a class="btn" href="#brain-break-mobile-details">Learn more</a>
+              <a class="btn" href="#demos">View mockups</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <span class="tag">Web application · One-time license</span>
+            <h3>Auto Garage</h3>
+            <div class="price">€49 <small>EUR · one-time</small></div>
+            <p style="color: var(--muted); margin: 6px 0 0;">
+              A self-contained web application for managing an auto repair
+              garage. Track customers, vehicles, repair visits, and reminders
+              — all running entirely in the browser, no backend required.
+            </p>
+            <ul>
+              <li>Customers, vehicles, service visits, and reminders</li>
+              <li>Local-first: data lives in browser storage; installable PWA, works offline</li>
+              <li>Single-business license, intended for one independent garage</li>
+            </ul>
+            <div class="actions">
+              <a class="btn primary" href="#pricing">See pricing</a>
+              <a class="btn" href="#auto-garage-details">Learn more</a>
+              <a class="btn" href="https://auto-garage.georgiosnikitas.workers.dev" target="_blank" rel="noopener">Live demo</a>
             </div>
           </article>
         </div>
@@ -257,8 +311,9 @@
         <h2>Pricing</h2>
         <p class="lede">
           All products are sold as single, one-time purchases. There are no
-          recurring subscription fees. Prices are in USD and exclude any local
-          taxes that may be applied at checkout.
+          recurring subscription fees. Prices are in EUR and shown excluding
+          VAT. Lemon Squeezy will calculate and add any applicable VAT or sales
+          tax at checkout based on your location.
         </p>
 
         <table class="pricing-table">
@@ -274,20 +329,214 @@
           <tbody>
             <tr>
               <td>Brain Break</td>
-              <td>Downloadable software</td>
+              <td>CLI application</td>
               <td>Single user, personal use</td>
               <td>One-time</td>
-              <td>$9.99</td>
+              <td>€9.99</td>
+            </tr>
+            <tr>
+              <td>Brain Break Mobile <small style="color: var(--muted);">(coming soon)</small></td>
+              <td>Mobile app (iOS &amp; Android)</td>
+              <td>Single user, personal use</td>
+              <td>One-time</td>
+              <td>€19.99</td>
             </tr>
             <tr>
               <td>Auto Garage</td>
-              <td>SaaS / web application</td>
+              <td>Web application</td>
               <td>Single small business</td>
               <td>One-time</td>
-              <td>$49.00</td>
+              <td>€49.00</td>
             </tr>
           </tbody>
         </table>
+
+        <p style="color: var(--muted); font-size: 14px; margin-top: 18px;">
+          <strong style="color: var(--text);">License activation:</strong>
+          every product includes a built-in license-key activation flow. If you
+          already own a key, paste it in to unlock the app. If you don't, the
+          activation screen has an option that takes you straight to the Lemon
+          Squeezy checkout to purchase one.
+        </p>
+      </div>
+    </section>
+
+    <section id="product-details">
+      <div class="container">
+        <h2>Product details</h2>
+        <p class="lede">
+          Full feature breakdown, supported platforms, and what is included with
+          each purchase.
+        </p>
+
+        <div class="grid" style="grid-template-columns: 1fr;">
+          <article class="card" id="brain-break-details">
+            <span class="tag">Brain Break · AI-powered CLI quiz app</span>
+            <h3>Brain Break — details</h3>
+            <p style="color: var(--muted); margin: 6px 0 12px;">
+              Brain Break is an AI-powered terminal quiz app built with TypeScript.
+              Define quiz domains, answer AI-generated questions, and review your
+              score progression and history — all from a CLI interface. Choose
+              from multiple AI providers including OpenAI, Anthropic, Google
+              Gemini, GitHub Copilot, Ollama for local models, or any
+              OpenAI-compatible endpoint.
+            </p>
+            <p style="color: var(--text); margin: 0 0 6px;"><strong>✨ Features</strong></p>
+            <ul>
+              <li><strong>Multiple AI providers</strong> — OpenAI, Anthropic, Google Gemini, GitHub Copilot, Ollama (local LLMs), and any OpenAI-compatible endpoint</li>
+              <li><strong>Domain-based quiz sessions</strong> — create any topic like <em>java-programming</em>, <em>greek-mythology</em>, or <em>thai-cuisine</em></li>
+              <li><strong>AI-generated questions</strong> — multiple-choice questions with automatic deduplication</li>
+              <li><strong>Adaptive difficulty</strong> — scoring and difficulty progression based on correctness and response speed</li>
+              <li><strong>Explain answer</strong> — ask the AI to explain why the correct answer is right after any question</li>
+              <li><strong>Teach me more</strong> — drill deeper with AI-generated micro-lessons after viewing an explanation</li>
+              <li><strong>Question bookmarking</strong> — bookmark any answered question from the quiz or history for later revisiting via a dedicated bookmarks view</li>
+              <li><strong>My Coach</strong> — AI-generated coaching report per domain analyzing your question history to surface strengths, weaknesses, trajectory, and recommendations</li>
+              <li><strong>Domain sub-menu</strong> — play, challenge, history, bookmarks, stats, my coach, ASCII art, archive, and delete per domain</li>
+              <li><strong>Stats dashboard</strong> — per-domain score trend, accuracy, and return streak</li>
+              <li><strong>ASCII art milestone</strong> — unlock FIGlet ASCII art per domain</li>
+              <li><strong>Configurable language and tone</strong> — language selection for questions and explanations, plus 7 tone options including humorous, sarcastic, and pirate</li>
+              <li><strong>Dark &amp; Light theme</strong> — toggle between dark and light terminal background modes for readable colors on any terminal</li>
+              <li><strong>Settings screen</strong> — change provider, model, language, tone, my coach scope, theme, and welcome screen at any time</li>
+            </ul>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>📋 Requirements</strong></p>
+            <ul>
+              <li>Node.js &gt;= 22.0.0</li>
+              <li>An AI provider configured through the in-app settings:
+                <ul>
+                  <li><strong>Anthropic</strong> — <code>ANTHROPIC_API_KEY</code> environment variable</li>
+                  <li><strong>OpenAI</strong> — <code>OPENAI_API_KEY</code> environment variable</li>
+                  <li><strong>Google Gemini</strong> — <code>GOOGLE_GENERATIVE_AI_API_KEY</code> environment variable</li>
+                  <li><strong>GitHub Copilot</strong> — active Copilot subscription and authentication in the environment</li>
+                  <li><strong>Ollama</strong> — a running Ollama instance</li>
+                  <li><strong>OpenAI Compatible API</strong> — <code>OPENAI_COMPATIBLE_API_KEY</code> environment variable. Use for any service exposing an OpenAI-compatible chat completions endpoint (e.g. Azure OpenAI, Groq, Together AI, Mistral, Perplexity, DeepSeek, LM Studio, vLLM).</li>
+                </ul>
+              </li>
+            </ul>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>Platform &amp; delivery</strong></p>
+            <ul>
+              <li>Cross-platform CLI — runs on macOS, Linux, and Windows wherever Node.js 22+ is available</li>
+              <li>Delivered as a downloadable package after checkout</li>
+              <li>Lifetime updates for the purchased major version</li>
+            </ul>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>License</strong></p>
+            <ul>
+              <li>Single-user, personal-use license</li>
+              <li>Non-transferable; AI provider usage and any associated API costs are the buyer's responsibility</li>
+            </ul>
+          </article>
+
+          <article class="card" id="brain-break-mobile-details">
+            <span class="tag">Brain Break Mobile · iOS &amp; Android · Coming soon</span>
+            <h3>Brain Break Mobile — details</h3>
+            <p style="color: var(--muted); margin: 6px 0 12px;">
+              Brain Break Mobile is the native mobile companion to the Brain
+              Break CLI — the same AI-powered quiz experience, reimagined for
+              phones. Define quiz domains, answer AI-generated questions, and
+              track your progress on the go. Sold as a separate product from the
+              CLI version.
+            </p>
+            <p style="color: var(--muted); margin: 0 0 12px;">
+              🚧 Currently in development — high-fidelity mockups of all 34
+              screens are available in the demos section below. Pre-orders are
+              not yet open; this listing is a heads-up so you know what’s coming.
+            </p>
+            <p style="color: var(--text); margin: 0 0 6px;"><strong>✨ Features</strong></p>
+            <p style="color: var(--muted); margin: 0 0 6px;">
+              Feature parity with the CLI version, adapted to a touch-first
+              mobile UI:
+            </p>
+            <ul>
+              <li><strong>Multiple AI providers</strong> — OpenAI, Anthropic, Google Gemini, GitHub Copilot, Ollama (local LLMs), and any OpenAI-compatible endpoint</li>
+              <li><strong>Domain-based quiz sessions</strong> — create any topic like <em>java-programming</em>, <em>greek-mythology</em>, or <em>thai-cuisine</em></li>
+              <li><strong>AI-generated questions</strong> — multiple-choice questions with automatic deduplication</li>
+              <li><strong>Adaptive difficulty</strong> — scoring and difficulty progression based on correctness and response speed</li>
+              <li><strong>Explain answer</strong> — ask the AI to explain why the correct answer is right after any question</li>
+              <li><strong>Teach me more</strong> — drill deeper with AI-generated micro-lessons after viewing an explanation</li>
+              <li><strong>Question bookmarking</strong> — bookmark any answered question for later revisiting via a dedicated bookmarks view</li>
+              <li><strong>My Coach</strong> — AI-generated coaching report per domain analyzing your question history to surface strengths, weaknesses, trajectory, and recommendations</li>
+              <li><strong>Domain sub-menu</strong> — play, challenge, history, bookmarks, stats, my coach, ASCII art, archive, and delete per domain</li>
+              <li><strong>Stats dashboard</strong> — per-domain score trend, accuracy, and return streak</li>
+              <li><strong>ASCII art milestone</strong> — unlock FIGlet ASCII art per domain</li>
+              <li><strong>Configurable language and tone</strong> — language selection for questions and explanations, plus 7 tone options including humorous, sarcastic, and pirate</li>
+              <li><strong>Settings screen</strong> — change provider, model, language, tone, my coach scope, and welcome screen at any time</li>
+            </ul>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>📋 Requirements</strong></p>
+            <ul>
+              <li>iOS 16+ or Android 10+</li>
+              <li>An AI provider configured in-app (same provider options as the CLI version):
+                <ul>
+                  <li><strong>Anthropic</strong>, <strong>OpenAI</strong>, <strong>Google Gemini</strong> — API key entered in Settings</li>
+                  <li><strong>GitHub Copilot</strong> — active Copilot subscription</li>
+                  <li><strong>Ollama</strong> — a reachable Ollama instance</li>
+                  <li><strong>OpenAI-compatible API</strong> — any endpoint exposing an OpenAI-compatible chat completions API (e.g. Azure OpenAI, Groq, Together AI, Mistral, Perplexity, DeepSeek, LM Studio, vLLM)</li>
+                </ul>
+              </li>
+            </ul>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>Platform &amp; delivery</strong></p>
+            <ul>
+              <li>Native iOS and Android apps</li>
+              <li>Distributed via the App Store and Google Play once released</li>
+              <li>Updates included for the purchased major version</li>
+            </ul>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>License</strong></p>
+            <ul>
+              <li>Single-user, personal-use license</li>
+              <li>Sold separately from the Brain Break CLI</li>
+              <li>AI provider usage and any associated API costs are the buyer's responsibility</li>
+            </ul>
+          </article>
+
+          <article class="card" id="auto-garage-details">
+            <span class="tag">Auto Garage · Garage management system</span>
+            <h3>Auto Garage — details</h3>
+            <p style="color: var(--muted); margin: 6px 0 12px;">
+              A self-contained web application for managing an auto repair
+              garage. Track customers, vehicles, repair visits, and reminders
+              — all running entirely in the browser with no backend required.
+            </p>
+            <p style="color: var(--muted); margin: 0 0 12px;">
+              🌐 Live demo:
+              <a href="https://auto-garage.georgiosnikitas.workers.dev" target="_blank" rel="noopener">auto-garage.georgiosnikitas.workers.dev</a>
+              — deployed on Cloudflare Workers.
+            </p>
+            <p style="color: var(--text); margin: 0 0 6px;"><strong>Features</strong></p>
+            <ul>
+              <li><strong>Customers</strong> — manage customer records (name, phone, history). Optional notes field with a 🎤 dictation button (where supported by the browser).</li>
+              <li><strong>Vehicles</strong> — track vehicles linked to customers.</li>
+              <li><strong>Service visits</strong> — log service visits and repair work. The “Additional Work” field includes a 🎤 dictation button (speech-to-text) where supported by the browser (Chrome / Edge desktop &amp; Android). Audio is processed by the browser’s built-in speech recognition service — not by any server we operate.</li>
+              <li><strong>Reminders</strong> — auto-generated reminders (last service + 1 year), with archive / restore.</li>
+              <li><strong>Statistics</strong> — aggregated insights with a year filter:
+                <ul>
+                  <li>Totals for customers, vehicles, visits, and revenue (clickable, navigate to a filtered list).</li>
+                  <li>Vehicles per make — breakdown with count, percentage, and a bar per make. Clicking a make filters the models below.</li>
+                  <li>Models for the selected make — shown only after a make is selected; clicking a model jumps to the vehicle list with a pre-filtered search.</li>
+                  <li>Per-vehicle revenue per year and total.</li>
+                </ul>
+              </li>
+              <li><strong>Local storage</strong> — data persists in browser <code>localStorage</code>; no server needed (subject to browser storage limits).</li>
+              <li><strong>Responsive design</strong> — adapts to desktop, tablet, and mobile screens.</li>
+              <li><strong>Data export</strong> — JSON export of all data (see <code>sample-data.json</code>).</li>
+              <li><strong>Data import</strong> — JSON import to restore or migrate data.</li>
+              <li><strong>Load sample data</strong> — one-click load of the bundled <code>sample-data.json</code> for quick demos / testing (replaces current data after confirmation).</li>
+              <li><strong>Wipe all data</strong> — clears every record from <code>localStorage</code> after a confirmation prompt for a clean slate.</li>
+              <li><strong>Theme toggle</strong> — switch between dark / light theme with a modern gradient UI.</li>
+              <li><strong>Hide amounts</strong> — 👁️ toggle to blur monetary values for over-the-shoulder privacy.</li>
+              <li><strong>Installable app</strong> — installable PWA, works offline after first load (when served over HTTPS).</li>
+            </ul>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>Platform &amp; delivery</strong></p>
+            <ul>
+              <li>Runs in any modern browser — desktop, tablet, or mobile</li>
+              <li>Hosted version available; can also be self-hosted as a static site</li>
+              <li>Installable as a PWA with full offline support after first load</li>
+              <li>Regular maintenance updates included</li>
+            </ul>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>License</strong></p>
+            <ul>
+              <li>Single small-business license</li>
+              <li>Intended for one independent garage</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -295,7 +544,8 @@
       <div class="container">
         <h2>Product demos</h2>
         <p class="lede">
-          Short walkthrough videos showing the main features of each product.
+          Short walkthrough videos and mockups showing the main features of
+          each product.
         </p>
 
         <div class="grid">
@@ -312,6 +562,21 @@
                 allowfullscreen></iframe>
               -->
             </div>
+          </div>
+
+          <div class="card">
+            <h3>Brain Break Mobile — mockups</h3>
+            <div class="video-wrap">
+              <div class="video-placeholder">
+                High-fidelity mockups of all 34 screens are prepared.
+                Interactive preview will be embedded here soon.
+              </div>
+            </div>
+            <p style="color: var(--muted); font-size: 13px; margin: 12px 0 0;">
+              Mobile app currently in development. No video walkthrough yet —
+              the static mockups represent the planned UX (dark theme,
+              card-based layout, stack navigation).
+            </p>
           </div>
 
           <div class="card">
@@ -333,10 +598,14 @@
 
     <section id="about" class="about">
       <div class="container">
-        <h2>About this business</h2>
+        <div class="about-header">
+          <img class="avatar" src="avatar.png" alt="Portrait of Georgios Nikitas" width="96" height="96" />
+          <h2>About this business</h2>
+        </div>
         <p>
-          This is an independent, one-person software studio run by Georgios
-          Nikitas. Products are designed, built, and supported personally.
+          This is a small, indie software project run by Georgios Nikitas
+          alongside a full-time job. Products are designed, built, and
+          supported personally.
         </p>
         <p>
           <strong style="color: var(--text);">What is sold:</strong> Small,
@@ -373,9 +642,13 @@
         <details>
           <summary>How is the software delivered?</summary>
           <p>
-            After checkout on Lemon Squeezy, buyers receive a download link
-            (for downloadable products) or sign-in details (for the web app)
-            by email.
+            After checkout on Lemon Squeezy, buyers receive a license key by
+            email. Open the app you purchased, paste the key into the
+            activation screen, and the product unlocks. The Brain Break CLI is
+            installed from its package, Auto Garage runs in your browser, and
+            Brain Break Mobile (when released) is installed from the App Store
+            or Google Play — each one then uses the same license-key flow to
+            activate.
           </p>
         </details>
         <details>
