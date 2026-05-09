@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Georgios Nikitas — Software Solutions for Individuals & Small Businesses</title>
-  <meta name="description" content="Independent software studio by Georgios Nikitas. Downloadable software and SaaS tools for individuals and small businesses." />
+  <meta name="description" content="Independent software studio by Georgios Nikitas. Downloadable software and web applications for individuals and small businesses." />
   <style>
     :root {
       --bg: #0b0d12;
@@ -116,6 +116,18 @@
     }
     .card ul { padding-left: 18px; margin: 12px 0 18px; color: var(--muted); }
     .card ul li { margin-bottom: 4px; }
+    .card pre {
+      background: #0a0c12;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 6px 0 14px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .card pre code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
     .card .actions {
       margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap;
     }
@@ -127,6 +139,12 @@
       background: var(--panel-2);
     }
     .btn.primary { background: var(--accent); color: #06281d; border-color: transparent; }
+    .btn.disabled,
+    .btn[aria-disabled="true"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
     .btn:hover { text-decoration: none; filter: brightness(1.08); }
 
     .video-wrap {
@@ -150,12 +168,37 @@
       background: var(--panel); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden;
     }
+    .pricing-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .pricing-table th, .pricing-table td {
       padding: 14px 16px; text-align: left;
       border-bottom: 1px solid var(--border); font-size: 15px;
     }
     .pricing-table th { background: var(--panel-2); color: var(--muted); font-weight: 600; }
     .pricing-table tr:last-child td { border-bottom: 0; }
+    @media (max-width: 720px) {
+      .pricing-table,
+      .pricing-table thead,
+      .pricing-table tbody,
+      .pricing-table tr,
+      .pricing-table th,
+      .pricing-table td { display: block; }
+      .pricing-table thead { display: none; }
+      .pricing-table tr { border-bottom: 1px solid var(--border); }
+      .pricing-table tr:last-child { border-bottom: 0; }
+      .pricing-table td {
+        display: grid;
+        grid-template-columns: minmax(96px, 38%) 1fr;
+        gap: 12px;
+        padding: 12px 16px;
+      }
+      .pricing-table td::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .pricing-table tr:last-child td { border-bottom: 1px solid var(--border); }
+      .pricing-table tr:last-child td:last-child { border-bottom: 0; }
+    }
 
     .about p, .faq p { color: var(--muted); }
     .about-header {
@@ -179,14 +222,27 @@
 
     .contact-grid {
       display: grid; gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @media (max-width: 520px) {
+      .contact-grid { grid-template-columns: 1fr; }
     }
     .contact-card {
       background: var(--panel); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 18px;
+      display: flex; align-items: center; gap: 14px;
     }
-    .contact-card .label { color: var(--muted); font-size: 13px; margin-bottom: 4px; }
-    .contact-card .value { font-weight: 600; word-break: break-all; }
+    .contact-card .icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      color: var(--accent-2);
+    }
+    .contact-card .icon svg { width: 100%; height: 100%; display: block; }
+    .contact-card .text { min-width: 0; flex: 1; overflow: hidden; }
+    .contact-card .value {
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+    .contact-card .value a { color: inherit; }
 
     footer {
       padding: 32px 0 48px; color: var(--muted);
@@ -208,6 +264,7 @@
           <li><a href="#product-details">Details</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#demos">Demos</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -221,14 +278,10 @@
         <h1>Practical software for individuals and small businesses.</h1>
         <p>
           I'm an indie software maker shipping small, focused products in my
-          own time — sold as one-time downloadable software and lightweight
-          web applications. Each one is designed to do one job well, with
-          transparent pricing and a clear license.
+          own time — downloadable tools and lightweight web applications. Each
+          one is designed to do one job well, with transparent one-time pricing
+          and a clear license.
         </p>
-        <div class="cta-row">
-          <a class="cta" href="#products">View products</a>
-          <a class="cta secondary" href="#demos">Watch demos</a>
-        </div>
       </div>
     </section>
 
@@ -236,9 +289,12 @@
       <div class="container">
         <h2>Products</h2>
         <p class="lede">
-          Three products are currently available or in active development.
-          All are sold as single, one-time purchases (no subscription) and
-          delivered through Lemon Squeezy.
+          A focused lineup of products I design, build, and maintain myself —
+          some ready to use today, others actively taking shape. Available
+          releases are crafted with care for performance, privacy, and a clean
+          user experience, and offered as one-time purchases: pay once and keep
+          using the product under your license, with no subscriptions, hidden
+          fees, or recurring charges.
         </p>
 
         <div class="grid">
@@ -251,14 +307,14 @@
               AI-generated questions, and track your progress — all from a CLI.
             </p>
             <ul>
-              <li>Works with OpenAI, Anthropic, Gemini, GitHub Copilot, Ollama, or any OpenAI-compatible endpoint</li>
               <li>Domain-based quizzes with adaptive difficulty and scoring</li>
-              <li>Single-user personal license, lifetime updates for the version purchased</li>
+              <li>Works with OpenAI, Anthropic, Gemini, GitHub Copilot, Ollama, or any OpenAI-compatible endpoint</li>
+              <li>Single-user personal license, updates included for the purchased major version</li>
             </ul>
             <div class="actions">
-              <a class="btn primary" href="#pricing">See pricing</a>
+              <a class="btn primary" href="https://georgiosnikitas.lemonsqueezy.com/checkout/buy/db284133-77d9-4546-ab4c-384681449f80" target="_blank" rel="noopener">Buy a license</a>
               <a class="btn" href="#brain-break-details">Learn more</a>
-              <a class="btn" href="#demos">Live demo</a>
+              <span class="btn disabled" aria-disabled="true" title="Demo video coming soon">Demo coming soon</span>
             </div>
           </article>
 
@@ -267,18 +323,18 @@
             <h3>Brain Break Mobile</h3>
             <div class="price">€19.99 <small>EUR · one-time</small></div>
             <p style="color: var(--muted); margin: 6px 0 0;">
-              The same AI-powered quiz experience as Brain Break, reimagined
+              The core AI-powered quiz experience from Brain Break, reimagined
               for iOS and Android. Sold as a separate product.
             </p>
             <ul>
-              <li>Same feature set as the CLI version (providers, domains, scoring, coach…)</li>
-              <li>Native mobile UI built with React Native / Expo</li>
-              <li>Single-user personal license, lifetime updates for the version purchased</li>
+              <li>Core quiz workflow from the CLI version</li>
+              <li>Native mobile UI designed for phones</li>
+              <li>Single-user personal license, updates included for the purchased major version</li>
             </ul>
             <div class="actions">
-              <a class="btn primary" href="#pricing">See pricing</a>
+              <span class="btn primary disabled" aria-disabled="true" title="Not yet available — coming soon">Buy a license</span>
               <a class="btn" href="#brain-break-mobile-details">Learn more</a>
-              <a class="btn" href="#demos">View mockups</a>
+              <a class="btn" href="brain-break-mobile-mockups.html" target="_blank" rel="noopener">View mockups</a>
             </div>
           </article>
 
@@ -288,82 +344,26 @@
             <div class="price">€49 <small>EUR · one-time</small></div>
             <p style="color: var(--muted); margin: 6px 0 0;">
               A self-contained web application for managing an auto repair
-              garage. Track customers, vehicles, repair visits, and reminders
-              — all running entirely in the browser, no backend required.
+              garage — runs entirely in the browser, no backend required.
             </p>
             <ul>
-              <li>Customers, vehicles, service visits, and reminders</li>
+              <li>Customers, vehicles, service visits, reminders, and statistics</li>
               <li>Local-first: data lives in browser storage; installable PWA, works offline</li>
-              <li>Single-business license, intended for one independent garage</li>
+              <li>Single small-business license, intended for one independent garage</li>
             </ul>
             <div class="actions">
-              <a class="btn primary" href="#pricing">See pricing</a>
+              <a class="btn primary" href="https://georgiosnikitas.lemonsqueezy.com/checkout/buy/6a360e72-309d-469f-a3d2-7c12e72fd2de" target="_blank" rel="noopener">Buy a license</a>
               <a class="btn" href="#auto-garage-details">Learn more</a>
-              <a class="btn" href="https://auto-garage.georgiosnikitas.workers.dev" target="_blank" rel="noopener">Live demo</a>
+              <a class="btn" href="https://auto-garage.georgiosnikitas.workers.dev" target="_blank" rel="noopener">Open the app</a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="pricing">
-      <div class="container">
-        <h2>Pricing</h2>
-        <p class="lede">
-          All products are sold as single, one-time purchases. There are no
-          recurring subscription fees. Prices are in EUR and shown excluding
-          VAT. Lemon Squeezy will calculate and add any applicable VAT or sales
-          tax at checkout based on your location.
-        </p>
-
-        <table class="pricing-table">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Type</th>
-              <th>License</th>
-              <th>Billing</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Brain Break</td>
-              <td>CLI application</td>
-              <td>Single user, personal use</td>
-              <td>One-time</td>
-              <td>€9.99</td>
-            </tr>
-            <tr>
-              <td>Brain Break Mobile <small style="color: var(--muted);">(coming soon)</small></td>
-              <td>Mobile app (iOS &amp; Android)</td>
-              <td>Single user, personal use</td>
-              <td>One-time</td>
-              <td>€19.99</td>
-            </tr>
-            <tr>
-              <td>Auto Garage</td>
-              <td>Web application</td>
-              <td>Single small business</td>
-              <td>One-time</td>
-              <td>€49.00</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p style="color: var(--muted); font-size: 14px; margin-top: 18px;">
-          <strong style="color: var(--text);">License activation:</strong>
-          every product includes a built-in license-key activation flow. If you
-          already own a key, paste it in to unlock the app. If you don't, the
-          activation screen has an option that takes you straight to the Lemon
-          Squeezy checkout to purchase one.
-        </p>
-      </div>
-    </section>
-
     <section id="product-details">
       <div class="container">
-        <h2>Product details</h2>
+        <h2>Details</h2>
         <p class="lede">
           Full feature breakdown, supported platforms, and what is included with
           each purchase.
@@ -372,7 +372,7 @@
         <div class="grid" style="grid-template-columns: 1fr;">
           <article class="card" id="brain-break-details">
             <span class="tag">Brain Break · AI-powered CLI quiz app</span>
-            <h3>Brain Break — details</h3>
+            <h3>Brain Break</h3>
             <p style="color: var(--muted); margin: 6px 0 12px;">
               Brain Break is an AI-powered terminal quiz app built with TypeScript.
               Define quiz domains, answer AI-generated questions, and review your
@@ -394,8 +394,8 @@
               <li><strong>Domain sub-menu</strong> — play, challenge, history, bookmarks, stats, my coach, ASCII art, archive, and delete per domain</li>
               <li><strong>Stats dashboard</strong> — per-domain score trend, accuracy, and return streak</li>
               <li><strong>ASCII art milestone</strong> — unlock FIGlet ASCII art per domain</li>
-              <li><strong>Configurable language and tone</strong> — language selection for questions and explanations, plus 7 tone options including humorous, sarcastic, and pirate</li>
-              <li><strong>Dark &amp; Light theme</strong> — toggle between dark and light terminal background modes for readable colors on any terminal</li>
+              <li><strong>Configurable language and tone</strong> — language selection for questions and explanations, plus seven tone options including humorous, sarcastic, and pirate</li>
+              <li><strong>Dark and light themes</strong> — toggle between dark and light terminal background modes for readable colors on any terminal</li>
               <li><strong>Settings screen</strong> — change provider, model, language, tone, my coach scope, theme, and welcome screen at any time</li>
             </ul>
             <p style="color: var(--text); margin: 12px 0 6px;"><strong>📋 Requirements</strong></p>
@@ -408,17 +408,23 @@
                   <li><strong>Google Gemini</strong> — <code>GOOGLE_GENERATIVE_AI_API_KEY</code> environment variable</li>
                   <li><strong>GitHub Copilot</strong> — active Copilot subscription and authentication in the environment</li>
                   <li><strong>Ollama</strong> — a running Ollama instance</li>
-                  <li><strong>OpenAI Compatible API</strong> — <code>OPENAI_COMPATIBLE_API_KEY</code> environment variable. Use for any service exposing an OpenAI-compatible chat completions endpoint (e.g. Azure OpenAI, Groq, Together AI, Mistral, Perplexity, DeepSeek, LM Studio, vLLM).</li>
+                  <li><strong>OpenAI-compatible API</strong> — <code>OPENAI_COMPATIBLE_API_KEY</code> environment variable. Use for any service exposing an OpenAI-compatible chat completions endpoint (e.g. Azure OpenAI, Groq, Together AI, Mistral, Perplexity, DeepSeek, LM Studio, vLLM).</li>
                 </ul>
               </li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>Platform &amp; delivery</strong></p>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>🚀 Platform &amp; delivery</strong></p>
             <ul>
               <li>Cross-platform CLI — runs on macOS, Linux, and Windows wherever Node.js 22+ is available</li>
-              <li>Delivered as a downloadable package after checkout</li>
-              <li>Lifetime updates for the purchased major version</li>
+              <li>Installed from npm or Homebrew; on first run, the app offers to enter an existing license key or purchase one</li>
+              <li>Updates included for the purchased major version</li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>License</strong></p>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>⚙️ Installation</strong></p>
+            <p style="color: var(--muted); margin: 0 0 6px;">📦 From npm</p>
+<pre><code>npm install -g brain-break</code></pre>
+            <p style="color: var(--muted); margin: 0 0 6px;">🍺 Homebrew (macOS)</p>
+<pre><code>brew tap georgiosnikitas/brain-break
+brew install brain-break</code></pre>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>📜 License</strong></p>
             <ul>
               <li>Single-user, personal-use license</li>
               <li>Non-transferable; AI provider usage and any associated API costs are the buyer's responsibility</li>
@@ -427,58 +433,45 @@
 
           <article class="card" id="brain-break-mobile-details">
             <span class="tag">Brain Break Mobile · iOS &amp; Android · Coming soon</span>
-            <h3>Brain Break Mobile — details</h3>
+            <h3>Brain Break Mobile</h3>
             <p style="color: var(--muted); margin: 6px 0 12px;">
               Brain Break Mobile is the native mobile companion to the Brain
-              Break CLI — the same AI-powered quiz experience, reimagined for
+              Break CLI — the core AI-powered quiz experience, reimagined for
               phones. Define quiz domains, answer AI-generated questions, and
               track your progress on the go. Sold as a separate product from the
               CLI version.
             </p>
             <p style="color: var(--muted); margin: 0 0 12px;">
-              🚧 Currently in development — high-fidelity mockups of all 34
-              screens are available in the demos section below. Pre-orders are
-              not yet open; this listing is a heads-up so you know what’s coming.
+              🚧 Currently in development. High-fidelity mockups are available
+              in the <a href="#demos">demos section</a> and as a
+              <a href="brain-break-mobile-mockups.html" target="_blank" rel="noopener">standalone preview</a>.
+              Pre-orders are not yet open; this listing is a heads-up so you
+              know what's coming.
             </p>
             <p style="color: var(--text); margin: 0 0 6px;"><strong>✨ Features</strong></p>
             <p style="color: var(--muted); margin: 0 0 6px;">
-              Feature parity with the CLI version, adapted to a touch-first
-              mobile UI:
+              The planned mobile app adapts the core quiz, progress tracking,
+              and coaching experience from the CLI to a touch-first interface.
+              Some provider options and platform-specific features may differ
+              at release.
             </p>
-            <ul>
-              <li><strong>Multiple AI providers</strong> — OpenAI, Anthropic, Google Gemini, GitHub Copilot, Ollama (local LLMs), and any OpenAI-compatible endpoint</li>
-              <li><strong>Domain-based quiz sessions</strong> — create any topic like <em>java-programming</em>, <em>greek-mythology</em>, or <em>thai-cuisine</em></li>
-              <li><strong>AI-generated questions</strong> — multiple-choice questions with automatic deduplication</li>
-              <li><strong>Adaptive difficulty</strong> — scoring and difficulty progression based on correctness and response speed</li>
-              <li><strong>Explain answer</strong> — ask the AI to explain why the correct answer is right after any question</li>
-              <li><strong>Teach me more</strong> — drill deeper with AI-generated micro-lessons after viewing an explanation</li>
-              <li><strong>Question bookmarking</strong> — bookmark any answered question for later revisiting via a dedicated bookmarks view</li>
-              <li><strong>My Coach</strong> — AI-generated coaching report per domain analyzing your question history to surface strengths, weaknesses, trajectory, and recommendations</li>
-              <li><strong>Domain sub-menu</strong> — play, challenge, history, bookmarks, stats, my coach, ASCII art, archive, and delete per domain</li>
-              <li><strong>Stats dashboard</strong> — per-domain score trend, accuracy, and return streak</li>
-              <li><strong>ASCII art milestone</strong> — unlock FIGlet ASCII art per domain</li>
-              <li><strong>Configurable language and tone</strong> — language selection for questions and explanations, plus 7 tone options including humorous, sarcastic, and pirate</li>
-              <li><strong>Settings screen</strong> — change provider, model, language, tone, my coach scope, and welcome screen at any time</li>
-            </ul>
             <p style="color: var(--text); margin: 12px 0 6px;"><strong>📋 Requirements</strong></p>
             <ul>
               <li>iOS 16+ or Android 10+</li>
-              <li>An AI provider configured in-app (same provider options as the CLI version):
+              <li>An AI provider configured in-app. Planned provider options include:
                 <ul>
                   <li><strong>Anthropic</strong>, <strong>OpenAI</strong>, <strong>Google Gemini</strong> — API key entered in Settings</li>
-                  <li><strong>GitHub Copilot</strong> — active Copilot subscription</li>
-                  <li><strong>Ollama</strong> — a reachable Ollama instance</li>
                   <li><strong>OpenAI-compatible API</strong> — any endpoint exposing an OpenAI-compatible chat completions API (e.g. Azure OpenAI, Groq, Together AI, Mistral, Perplexity, DeepSeek, LM Studio, vLLM)</li>
                 </ul>
               </li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>Platform &amp; delivery</strong></p>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>🚀 Platform &amp; delivery</strong></p>
             <ul>
               <li>Native iOS and Android apps</li>
               <li>Distributed via the App Store and Google Play once released</li>
               <li>Updates included for the purchased major version</li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>License</strong></p>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>📜 License</strong></p>
             <ul>
               <li>Single-user, personal-use license</li>
               <li>Sold separately from the Brain Break CLI</li>
@@ -488,22 +481,23 @@
 
           <article class="card" id="auto-garage-details">
             <span class="tag">Auto Garage · Garage management system</span>
-            <h3>Auto Garage — details</h3>
+            <h3>Auto Garage</h3>
             <p style="color: var(--muted); margin: 6px 0 12px;">
               A self-contained web application for managing an auto repair
-              garage. Track customers, vehicles, repair visits, and reminders
-              — all running entirely in the browser with no backend required.
+              garage. Track customers, vehicles, repair visits, reminders,
+              and statistics — all running entirely in the browser with no
+              backend required.
             </p>
             <p style="color: var(--muted); margin: 0 0 12px;">
-              🌐 Live demo:
+              🌐 Hosted app:
               <a href="https://auto-garage.georgiosnikitas.workers.dev" target="_blank" rel="noopener">auto-garage.georgiosnikitas.workers.dev</a>
               — deployed on Cloudflare Workers.
             </p>
             <p style="color: var(--text); margin: 0 0 6px;"><strong>Features</strong></p>
             <ul>
-              <li><strong>Customers</strong> — manage customer records (name, phone, history). Optional notes field with a 🎤 dictation button (where supported by the browser).</li>
+              <li><strong>Customers</strong> — manage customer records (name, phone, history) with an optional notes field.</li>
               <li><strong>Vehicles</strong> — track vehicles linked to customers.</li>
-              <li><strong>Service visits</strong> — log service visits and repair work. The “Additional Work” field includes a 🎤 dictation button (speech-to-text) where supported by the browser (Chrome / Edge desktop &amp; Android). Audio is processed by the browser’s built-in speech recognition service — not by any server we operate.</li>
+              <li><strong>Service visits</strong> — log service visits and repair work, including an "Additional Work" field for free-form notes.</li>
               <li><strong>Reminders</strong> — auto-generated reminders (last service + 1 year), with archive / restore.</li>
               <li><strong>Statistics</strong> — aggregated insights with a year filter:
                 <ul>
@@ -523,14 +517,14 @@
               <li><strong>Hide amounts</strong> — 👁️ toggle to blur monetary values for over-the-shoulder privacy.</li>
               <li><strong>Installable app</strong> — installable PWA, works offline after first load (when served over HTTPS).</li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>Platform &amp; delivery</strong></p>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>🚀 Platform &amp; delivery</strong></p>
             <ul>
               <li>Runs in any modern browser — desktop, tablet, or mobile</li>
               <li>Hosted version available; can also be self-hosted as a static site</li>
               <li>Installable as a PWA with full offline support after first load</li>
-              <li>Regular maintenance updates included</li>
+              <li>Updates included for the purchased major version</li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>License</strong></p>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>📜 License</strong></p>
             <ul>
               <li>Single small-business license</li>
               <li>Intended for one independent garage</li>
@@ -540,99 +534,109 @@
       </div>
     </section>
 
-    <section id="demos">
+    <section id="pricing">
       <div class="container">
-        <h2>Product demos</h2>
+        <h2>Pricing</h2>
         <p class="lede">
-          Short walkthrough videos and mockups showing the main features of
-          each product.
+          Available products are sold as one-time purchases. There are no
+          recurring subscription fees. Planned prices for unreleased products
+          are shown for reference. Prices are in EUR and shown excluding VAT.
+          Lemon Squeezy will calculate and add any applicable VAT or sales tax
+          at checkout based on your location.
         </p>
 
-        <div class="grid">
-          <div class="card">
-            <h3>Brain Break — demo</h3>
-            <div class="video-wrap">
-              <!-- Replace src with your YouTube/Vimeo embed URL or a self-hosted MP4 -->
-              <div class="video-placeholder">Demo video coming soon — embed will be added here.</div>
-              <!--
-              <iframe
-                src="https://www.youtube.com/embed/REPLACE_WITH_VIDEO_ID"
-                title="Brain Break demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-              -->
-            </div>
-          </div>
+        <div class="pricing-wrap">
+          <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Type</th>
+              <th>License</th>
+              <th>Billing</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Product">Brain Break</td>
+              <td data-label="Type">CLI application</td>
+              <td data-label="License">Single user, personal use</td>
+              <td data-label="Billing">One-time</td>
+              <td data-label="Price">€9.99</td>
+            </tr>
+            <tr>
+              <td data-label="Product">Brain Break Mobile <small style="color: var(--muted);">(coming soon)</small></td>
+              <td data-label="Type">Mobile app (iOS &amp; Android)</td>
+              <td data-label="License">Single user, personal use</td>
+              <td data-label="Billing">One-time</td>
+              <td data-label="Price">€19.99</td>
+            </tr>
+            <tr>
+              <td data-label="Product">Auto Garage</td>
+              <td data-label="Type">Web application</td>
+              <td data-label="License">Single small-business license</td>
+              <td data-label="Billing">One-time</td>
+              <td data-label="Price">€49.00</td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
 
-          <div class="card">
-            <h3>Brain Break Mobile — mockups</h3>
-            <div class="video-wrap">
-              <div class="video-placeholder">
-                High-fidelity mockups of all 34 screens are prepared.
-                Interactive preview will be embedded here soon.
-              </div>
-            </div>
-            <p style="color: var(--muted); font-size: 13px; margin: 12px 0 0;">
-              Mobile app currently in development. No video walkthrough yet —
-              the static mockups represent the planned UX (dark theme,
-              card-based layout, stack navigation).
-            </p>
-          </div>
+        <p style="color: var(--muted); font-size: 14px; margin-top: 18px;">
+          <strong style="color: var(--text);">License activation:</strong>
+          all paid products include a built-in license-key activation flow.
+          After checkout, you receive a key by email; paste it into the app
+          to unlock it. Product pages and activation screens link back to the
+          relevant Lemon Squeezy checkout when you need a key.
+        </p>
 
-          <div class="card">
-            <h3>Auto Garage — demo</h3>
-            <div class="video-wrap">
-              <div class="video-placeholder">Demo video coming soon — embed will be added here.</div>
-              <!--
-              <iframe
-                src="https://www.youtube.com/embed/REPLACE_WITH_VIDEO_ID"
-                title="Auto Garage demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-              -->
-            </div>
-          </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 20px;">
+          <a class="btn primary" href="https://georgiosnikitas.lemonsqueezy.com/" target="_blank" rel="noopener">
+            Visit the store →
+          </a>
+          <span style="color: var(--muted); font-size: 13px;">
+            All licenses are sold through my Lemon Squeezy storefront:
+            <a href="https://georgiosnikitas.lemonsqueezy.com/" target="_blank" rel="noopener">georgiosnikitas.lemonsqueezy.com</a>
+          </span>
         </div>
       </div>
     </section>
 
-    <section id="about" class="about">
+    <section id="demos">
       <div class="container">
-        <div class="about-header">
-          <img class="avatar" src="avatar.png" alt="Portrait of Georgios Nikitas" width="96" height="96" />
-          <h2>About this business</h2>
+        <h2>Demos</h2>
+        <p class="lede">
+          Demo videos and mobile mockups will be added here as they become
+          available.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Brain Break</h3>
+            <div class="video-wrap">
+              <div class="video-placeholder">Demo video coming soon — embed will be added here.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Brain Break Mobile</h3>
+            <div class="video-wrap">
+              <iframe src="brain-break-mobile-mockups.html" title="Brain Break Mobile — high-fidelity mockups" loading="lazy"></iframe>
+            </div>
+            <p style="color: var(--muted); font-size: 13px; margin: 12px 0 0;">
+              High-fidelity mockups of all 34 screens (Direction C: Balanced
+              Cards, dark theme, stack navigation).
+              <a href="brain-break-mobile-mockups.html" target="_blank" rel="noopener">Open in a new tab ↗</a>
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Auto Garage</h3>
+            <div class="video-wrap">
+              <div class="video-placeholder">Demo video coming soon — embed will be added here.</div>
+            </div>
+          </div>
         </div>
-        <p>
-          This is a small, indie software project run by Georgios Nikitas
-          alongside a full-time job. Products are designed, built, and
-          supported personally.
-        </p>
-        <p>
-          <strong style="color: var(--text);">What is sold:</strong> Small,
-          self-contained software products. Some are downloadable desktop
-          utilities (such as Brain Break), others are lightweight web/SaaS
-          applications (such as Auto Garage).
-        </p>
-        <p>
-          <strong style="color: var(--text);">How they are made and licensed:</strong>
-          Each product is developed in-house. Buyers receive a non-transferable
-          license to use the software for the intended scope (single user for
-          personal tools, single small business for business tools). Source
-          code stays under the developer's ownership.
-        </p>
-        <p>
-          <strong style="color: var(--text);">Who they are for:</strong>
-          Individuals looking for simple personal-productivity tools, and
-          small businesses (such as independent auto garages) that need a
-          straightforward, affordable management tool without the complexity
-          or recurring cost of larger platforms.
-        </p>
-        <p>
-          <strong style="color: var(--text);">Billing model:</strong> All
-          current products are single one-time purchases. No subscriptions are
-          offered today. If a subscription product is ever introduced, it will
-          be clearly listed on this page with its own pricing.
-        </p>
       </div>
     </section>
 
@@ -642,13 +646,14 @@
         <details>
           <summary>How is the software delivered?</summary>
           <p>
-            After checkout on Lemon Squeezy, buyers receive a license key by
-            email. Open the app you purchased, paste the key into the
-            activation screen, and the product unlocks. The Brain Break CLI is
-            installed from its package, Auto Garage runs in your browser, and
-            Brain Break Mobile (when released) is installed from the App Store
-            or Google Play — each one then uses the same license-key flow to
-            activate.
+            After checkout on Lemon Squeezy, you receive a license key by
+            email. Each product has its own delivery channel — the Brain Break
+            CLI is installed from npm or Homebrew, Auto Garage runs in your
+            browser (or can be self-hosted), and Brain Break Mobile (when
+            released) will be installed from the App Store or Google Play.
+            All of them then use the same activation flow: open the app, paste
+            your license key into the activation screen, and the product
+            unlocks.
           </p>
         </details>
         <details>
@@ -669,29 +674,84 @@
       </div>
     </section>
 
+    <section id="about" class="about">
+      <div class="container">
+        <div class="about-header">
+          <img class="avatar" src="avatar.png" alt="Portrait of Georgios Nikitas" width="96" height="96" />
+          <h2>About</h2>
+        </div>
+        <p>
+          This is a small, indie software project run by Georgios Nikitas
+          alongside a full-time job. Products are designed, built, and
+          supported personally.
+        </p>
+        <p>
+          <strong style="color: var(--text);">What is sold:</strong> Small,
+          self-contained software products. Some are downloadable command-line
+          tools (such as Brain Break), others are lightweight web applications
+          (such as Auto Garage).
+        </p>
+        <p>
+          <strong style="color: var(--text);">Who they are for:</strong>
+          Individuals and small businesses that want focused, affordable
+          software that does one job well — without the complexity or
+          recurring cost of larger platforms. Each product targets a specific
+          audience, described on its own listing.
+        </p>
+        <p>
+          <strong style="color: var(--text);">How they are made and licensed:</strong>
+          Each product is developed in-house. Buyers receive a non-transferable
+          license to use the software for the intended scope (single user for
+          personal tools, single small business for business tools). Source
+          code stays under the developer's ownership.
+        </p>
+        <p>
+          <strong style="color: var(--text);">Billing model:</strong> All
+          current products are one-time purchases. No subscriptions are
+          offered today. If a subscription product is ever introduced, it will
+          be clearly listed on this page with its own pricing.
+        </p>
+      </div>
+    </section>
+
     <section id="contact">
       <div class="container">
-        <h2>Contact &amp; links</h2>
+        <h2>Contact</h2>
         <p class="lede">
-          For sales questions, support, or KYB/KYC verification, please use
-          the channels below.
+          For sales questions or support, please use the channels below.
         </p>
         <div class="contact-grid">
           <div class="contact-card">
-            <div class="label">Email</div>
-            <div class="value"><a href="mailto:hello@example.com">hello@example.com</a></div>
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <div class="text">
+              <div class="value"><a href="mailto:georgiosnikitas@gmail.com">georgiosnikitas@gmail.com</a></div>
+            </div>
           </div>
           <div class="contact-card">
-            <div class="label">GitHub</div>
-            <div class="value"><a href="https://github.com/georgiosnikitas" target="_blank" rel="noopener">github.com/georgiosnikitas</a></div>
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+            </span>
+            <div class="text">
+              <div class="value"><a href="https://www.linkedin.com/in/gnikitas/" target="_blank" rel="noopener">linkedin.com/in/gnikitas</a></div>
+            </div>
           </div>
           <div class="contact-card">
-            <div class="label">LinkedIn</div>
-            <div class="value"><a href="#" target="_blank" rel="noopener">Add your LinkedIn URL</a></div>
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.97 3.22 9.18 7.69 10.67.56.1.77-.24.77-.54 0-.27-.01-1.16-.02-2.1-3.13.68-3.79-1.34-3.79-1.34-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.29-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.11 1.16.9-.25 1.87-.38 2.83-.38.96 0 1.93.13 2.83.38 2.16-1.46 3.11-1.16 3.11-1.16.61 1.56.23 2.71.11 3 .72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.28-5.16 5.56.4.34.76 1.02.76 2.06 0 1.49-.01 2.69-.01 3.05 0 .3.2.65.78.54 4.46-1.49 7.68-5.7 7.68-10.67C23.25 5.48 18.27.5 12 .5Z"/></svg>
+            </span>
+            <div class="text">
+              <div class="value"><a href="https://github.com/georgiosnikitas" target="_blank" rel="noopener">github.com/georgiosnikitas</a></div>
+            </div>
           </div>
           <div class="contact-card">
-            <div class="label">X / Twitter</div>
-            <div class="value"><a href="#" target="_blank" rel="noopener">Add your X URL</a></div>
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0Zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.327-1.04 1.59a3.42 3.42 0 0 1 .045.55c0 2.797-3.254 5.07-7.27 5.07-4.017 0-7.27-2.273-7.27-5.07 0-.188.016-.374.046-.556-.6-.265-1.02-.875-1.02-1.585 0-.968.786-1.754 1.754-1.754.477 0 .9.182 1.207.49 1.207-.86 2.879-1.424 4.726-1.487l.899-4.211a.342.342 0 0 1 .405-.262l2.93.622a1.25 1.25 0 0 1 1.123-.703Zm-7.31 7.396c-.694 0-1.265.572-1.265 1.265 0 .695.571 1.266 1.265 1.266.696 0 1.266-.571 1.266-1.266 0-.693-.57-1.265-1.266-1.265Zm4.583 0c-.694 0-1.266.572-1.266 1.265 0 .695.572 1.266 1.266 1.266.696 0 1.265-.571 1.265-1.266 0-.693-.57-1.265-1.265-1.265Zm-.473 4.99a.327.327 0 0 0-.231.094c-.584.585-1.704.633-2.029.633-.328 0-1.447-.048-2.03-.633a.326.326 0 0 0-.463.463c.92.92 2.405.992 2.493.996h.002c.087-.004 1.572-.075 2.492-.996a.327.327 0 0 0-.234-.557Z"/></svg>
+            </span>
+            <div class="text">
+              <div class="value"><a href="https://www.reddit.com/user/georgiosnikitas/" target="_blank" rel="noopener">reddit.com/user/georgiosnikitas</a></div>
+            </div>
           </div>
         </div>
       </div>
@@ -705,6 +765,21 @@
   </footer>
 
   <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    // On full page load (reload / fresh visit), always start at the top —
+    // strip any leftover #hash from the URL so the browser doesn't jump to it.
+    window.addEventListener('load', () => {
+      const navEntry = performance.getEntriesByType('navigation')[0];
+      const isReload = navEntry && navEntry.type === 'reload';
+      if (isReload || !location.hash) {
+        if (location.hash) {
+          history.replaceState(null, '', location.pathname + location.search);
+        }
+        window.scrollTo(0, 0);
+      }
+    });
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
