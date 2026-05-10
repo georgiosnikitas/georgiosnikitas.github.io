@@ -129,7 +129,11 @@
     }
     .card pre code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
     .card .actions {
-      margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap;
+      margin-top: auto; display: grid; gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .card .actions .btn {
+      justify-content: center; text-align: center;
     }
     .btn {
       display: inline-flex; align-items: center; gap: 6px;
@@ -183,8 +187,8 @@
       .pricing-table th,
       .pricing-table td { display: block; }
       .pricing-table thead { display: none; }
-      .pricing-table tr { border-bottom: 1px solid var(--border); }
-      .pricing-table tr:last-child { border-bottom: 0; }
+      .pricing-table tr { border-bottom: 2px solid var(--accent); margin-bottom: 12px; }
+      .pricing-table tr:last-child { border-bottom: 0; margin-bottom: 0; }
       .pricing-table td {
         display: grid;
         grid-template-columns: minmax(96px, 38%) 1fr;
@@ -249,6 +253,21 @@
       font-size: 13px; border-top: 1px solid var(--border);
       text-align: center;
     }
+    .card-accordion { margin-top: 12px; }
+    .card-accordion summary {
+      cursor: pointer; font-weight: 600; color: var(--accent-2);
+      padding: 8px 0;
+      list-style: none;
+    }
+    .card-accordion summary::-webkit-details-marker { display: none; }
+    .card-accordion summary::before {
+      content: '▸ ';
+      display: inline;
+    }
+    .card-accordion[open] summary::before {
+      content: '▾ ';
+    }
+    .card-accordion summary:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -314,7 +333,8 @@
             <div class="actions">
               <a class="btn primary" href="https://georgiosnikitas.lemonsqueezy.com/checkout/buy/db284133-77d9-4546-ab4c-384681449f80" target="_blank" rel="noopener">Buy a license</a>
               <a class="btn" href="#brain-break-details">Learn more</a>
-              <span class="btn disabled" aria-disabled="true" title="Demo video coming soon">Demo coming soon</span>
+              <a class="btn" href="#demos">Watch demo</a>
+              <button class="btn" style="background:linear-gradient(135deg,#6ee7b7,#60a5fa);color:#0b0d12;border-color:transparent;font-weight:700;cursor:pointer;" onclick="navigator.clipboard.writeText('npm install -g brain-break').then(()=>{this.textContent='Copied! Paste in your terminal';setTimeout(()=>{this.textContent='📋 Install'},2000)})">📋 Install</button>
             </div>
           </article>
 
@@ -334,7 +354,7 @@
             <div class="actions">
               <span class="btn primary disabled" aria-disabled="true" title="Not yet available — coming soon">Buy a license</span>
               <a class="btn" href="#brain-break-mobile-details">Learn more</a>
-              <a class="btn" href="brain-break-mobile-mockups.html" target="_blank" rel="noopener">View mockups</a>
+              <a class="btn" href="#demos">View mockups</a>
             </div>
           </article>
 
@@ -354,7 +374,8 @@
             <div class="actions">
               <a class="btn primary" href="https://georgiosnikitas.lemonsqueezy.com/checkout/buy/6a360e72-309d-469f-a3d2-7c12e72fd2de" target="_blank" rel="noopener">Buy a license</a>
               <a class="btn" href="#auto-garage-details">Learn more</a>
-              <a class="btn" href="https://auto-garage.georgiosnikitas.workers.dev" target="_blank" rel="noopener">Open the app</a>
+              <a class="btn" href="#demos">Watch demo</a>
+              <a class="btn" href="https://auto-garage.georgiosnikitas.workers.dev" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#6ee7b7,#60a5fa);color:#0b0d12;border-color:transparent;font-weight:700;">🚀 Open app</a>
             </div>
           </article>
         </div>
@@ -381,7 +402,14 @@
               Gemini, GitHub Copilot, Ollama for local models, or any
               OpenAI-compatible endpoint.
             </p>
-            <p style="color: var(--text); margin: 0 0 6px;"><strong>✨ Features</strong></p>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>⚙️ Installation</strong></p>
+            <p style="color: var(--muted); margin: 0 0 6px;">📦 From npm</p>
+<pre><code>npm install -g brain-break</code></pre>
+            <p style="color: var(--muted); margin: 0 0 6px;">🍺 Homebrew (macOS)</p>
+<pre><code>brew tap georgiosnikitas/brain-break
+brew install brain-break</code></pre>
+            <details class="card-accordion" name="bb-sections">
+            <summary>✨ Features</summary>
             <ul>
               <li><strong>Multiple AI providers</strong> — OpenAI, Anthropic, Google Gemini, GitHub Copilot, Ollama (local LLMs), and any OpenAI-compatible endpoint</li>
               <li><strong>Domain-based quiz sessions</strong> — create any topic like <em>java-programming</em>, <em>greek-mythology</em>, or <em>thai-cuisine</em></li>
@@ -398,7 +426,9 @@
               <li><strong>Dark and light themes</strong> — toggle between dark and light terminal background modes for readable colors on any terminal</li>
               <li><strong>Settings screen</strong> — change provider, model, language, tone, my coach scope, theme, and welcome screen at any time</li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>📋 Requirements</strong></p>
+            </details>
+            <details class="card-accordion" name="bb-sections">
+            <summary>📋 Requirements</summary>
             <ul>
               <li>Node.js &gt;= 22.0.0</li>
               <li>An AI provider configured through the in-app settings:
@@ -412,23 +442,22 @@
                 </ul>
               </li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>🚀 Platform &amp; delivery</strong></p>
+            </details>
+            <details class="card-accordion" name="bb-sections">
+            <summary>🚀 Platform &amp; delivery</summary>
             <ul>
               <li>Cross-platform CLI — runs on macOS, Linux, and Windows wherever Node.js 22+ is available</li>
               <li>Installed from npm or Homebrew; on first run, the app offers to enter an existing license key or purchase one</li>
               <li>Updates included for the purchased major version</li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>⚙️ Installation</strong></p>
-            <p style="color: var(--muted); margin: 0 0 6px;">📦 From npm</p>
-<pre><code>npm install -g brain-break</code></pre>
-            <p style="color: var(--muted); margin: 0 0 6px;">🍺 Homebrew (macOS)</p>
-<pre><code>brew tap georgiosnikitas/brain-break
-brew install brain-break</code></pre>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>📜 License</strong></p>
+            </details>
+            <details class="card-accordion" name="bb-sections">
+            <summary>📜 License</summary>
             <ul>
               <li>Single-user, personal-use license</li>
               <li>Non-transferable; AI provider usage and any associated API costs are the buyer's responsibility</li>
             </ul>
+            </details>
           </article>
 
           <article class="card" id="brain-break-mobile-details">
@@ -445,17 +474,18 @@ brew install brain-break</code></pre>
               🚧 Currently in development. High-fidelity mockups are available
               in the <a href="#demos">demos section</a> and as a
               <a href="brain-break-mobile-mockups.html" target="_blank" rel="noopener">standalone preview</a>.
-              Pre-orders are not yet open; this listing is a heads-up so you
-              know what's coming.
             </p>
-            <p style="color: var(--text); margin: 0 0 6px;"><strong>✨ Features</strong></p>
+            <details class="card-accordion" name="bbm-sections">
+            <summary>✨ Features</summary>
             <p style="color: var(--muted); margin: 0 0 6px;">
               The planned mobile app adapts the core quiz, progress tracking,
               and coaching experience from the CLI to a touch-first interface.
               Some provider options and platform-specific features may differ
               at release.
             </p>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>📋 Requirements</strong></p>
+            </details>
+            <details class="card-accordion" name="bbm-sections">
+            <summary>📋 Requirements</summary>
             <ul>
               <li>iOS 16+ or Android 10+</li>
               <li>An AI provider configured in-app. Planned provider options include:
@@ -465,18 +495,23 @@ brew install brain-break</code></pre>
                 </ul>
               </li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>🚀 Platform &amp; delivery</strong></p>
+            </details>
+            <details class="card-accordion" name="bbm-sections">
+            <summary>🚀 Platform &amp; delivery</summary>
             <ul>
               <li>Native iOS and Android apps</li>
               <li>Distributed via the App Store and Google Play once released</li>
               <li>Updates included for the purchased major version</li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>📜 License</strong></p>
+            </details>
+            <details class="card-accordion" name="bbm-sections">
+            <summary>📜 License</summary>
             <ul>
               <li>Single-user, personal-use license</li>
               <li>Sold separately from the Brain Break CLI</li>
               <li>AI provider usage and any associated API costs are the buyer's responsibility</li>
             </ul>
+            </details>
           </article>
 
           <article class="card" id="auto-garage-details">
@@ -493,42 +528,50 @@ brew install brain-break</code></pre>
               <a href="https://auto-garage.georgiosnikitas.workers.dev" target="_blank" rel="noopener">auto-garage.georgiosnikitas.workers.dev</a>
               — deployed on Cloudflare Workers.
             </p>
-            <p style="color: var(--text); margin: 0 0 6px;"><strong>Features</strong></p>
+            <details class="card-accordion" name="ag-sections">
+            <summary>✨ Features</summary>
             <ul>
-              <li><strong>Customers</strong> — manage customer records (name, phone, history) with an optional notes field.</li>
-              <li><strong>Vehicles</strong> — track vehicles linked to customers.</li>
-              <li><strong>Service visits</strong> — log service visits and repair work, including an "Additional Work" field for free-form notes.</li>
-              <li><strong>Reminders</strong> — auto-generated reminders (last service + 1 year), with archive / restore.</li>
-              <li><strong>Statistics</strong> — aggregated insights with a year filter:
-                <ul>
-                  <li>Totals for customers, vehicles, visits, and revenue (clickable, navigate to a filtered list).</li>
-                  <li>Vehicles per make — breakdown with count, percentage, and a bar per make. Clicking a make filters the models below.</li>
-                  <li>Models for the selected make — shown only after a make is selected; clicking a model jumps to the vehicle list with a pre-filtered search.</li>
-                  <li>Per-vehicle revenue per year and total.</li>
-                </ul>
-              </li>
-              <li><strong>Local storage</strong> — data persists in browser <code>localStorage</code>; no server needed (subject to browser storage limits).</li>
-              <li><strong>Responsive design</strong> — adapts to desktop, tablet, and mobile screens.</li>
-              <li><strong>Data export</strong> — JSON export of all data (see <code>sample-data.json</code>).</li>
-              <li><strong>Data import</strong> — JSON import to restore or migrate data.</li>
-              <li><strong>Load sample data</strong> — one-click load of the bundled <code>sample-data.json</code> for quick demos / testing (replaces current data after confirmation).</li>
-              <li><strong>Wipe all data</strong> — clears every record from <code>localStorage</code> after a confirmation prompt for a clean slate.</li>
-              <li><strong>Theme toggle</strong> — switch between dark / light theme with a modern gradient UI.</li>
-              <li><strong>Hide amounts</strong> — 👁️ toggle to blur monetary values for over-the-shoulder privacy.</li>
-              <li><strong>Installable app</strong> — installable PWA, works offline after first load (when served over HTTPS).</li>
+              <li>👥 <strong>Customers</strong> — manage customer records (name, phone, history) with optional notes and 🎤 dictation.</li>
+              <li>🚗 <strong>Vehicles</strong> — track vehicles linked to customers.</li>
+              <li>🔧 <strong>Visits</strong> — log service visits and repair work with optional 🎤 speech-to-text dictation (browser-native, no external server).</li>
+              <li>⏰ <strong>Reminders</strong> — auto-generated reminders (last service + 1 year) with archive / restore.</li>
+              <li>📊 <strong>Statistics</strong> — aggregated insights with year filter: totals, vehicles by make/model, and per-vehicle revenue.</li>
+              <li>💾 <strong>Local storage</strong> — data persists in browser <code>localStorage</code>; no server needed.</li>
+              <li>📱 <strong>Responsive design</strong> — adapts to desktop, tablet, and mobile screens.</li>
+              <li>📤 <strong>Data export</strong> — JSON export of all data.</li>
+              <li>📥 <strong>Data import</strong> — JSON import to restore or migrate data.</li>
+              <li>📦 <strong>Load sample data</strong> — one-click load of bundled sample data for quick demos / testing.</li>
+              <li>🗑️ <strong>Delete all data</strong> — wipes every record from <code>localStorage</code> after confirmation.</li>
+              <li>🎨 <strong>Theme toggle</strong> — switch between dark / light theme with modern gradient UI.</li>
+              <li>👁️ <strong>Hide amounts</strong> — toggle to blur monetary values for over-the-shoulder privacy.</li>
+              <li>📲 <strong>Install as app</strong> — installable PWA, works offline after first load (requires HTTPS).</li>
+              <li>☕ <strong>Buy Me a Coffee</strong> — optional support link in the overflow menu.</li>
+              <li>🔑 <strong>License management</strong> — optional Lemon Squeezy license-key gate with hard-block UI and demo mode.</li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>🚀 Platform &amp; delivery</strong></p>
+            </details>
+            <details class="card-accordion" name="ag-sections">
+            <summary>📋 Requirements</summary>
+            <ul>
+              <li>Any modern browser (Chrome, Firefox, Safari, Edge)</li>
+              <li>HTTPS required for PWA installation and offline support</li>
+            </ul>
+            </details>
+            <details class="card-accordion" name="ag-sections">
+            <summary>🚀 Platform &amp; delivery</summary>
             <ul>
               <li>Runs in any modern browser — desktop, tablet, or mobile</li>
               <li>Hosted version available; can also be self-hosted as a static site</li>
               <li>Installable as a PWA with full offline support after first load</li>
               <li>Updates included for the purchased major version</li>
             </ul>
-            <p style="color: var(--text); margin: 12px 0 6px;"><strong>📜 License</strong></p>
+            </details>
+            <details class="card-accordion" name="ag-sections">
+            <summary>📜 License</summary>
             <ul>
               <li>Single small-business license</li>
               <li>Intended for one independent garage</li>
             </ul>
+            </details>
           </article>
         </div>
       </div>
@@ -606,34 +649,34 @@ brew install brain-break</code></pre>
       <div class="container">
         <h2>Demos</h2>
         <p class="lede">
-          Demo videos and mobile mockups will be added here as they become
-          available.
+          Watch product demos and browse mobile mockups.
         </p>
 
         <div class="grid">
           <div class="card">
             <h3>Brain Break</h3>
             <div class="video-wrap">
-              <div class="video-placeholder">Demo video coming soon — embed will be added here.</div>
+              <a href="https://youtu.be/Rqoc28LSoNg" target="_blank" rel="noopener" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#000 url('https://img.youtube.com/vi/Rqoc28LSoNg/hqdefault.jpg') center/cover no-repeat;">
+                <svg width="68" height="48" viewBox="0 0 68 48" style="filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 13 0 24 0 24s0 11 1.5 16.3a8.5 8.5 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35 68 24 68 24s0-11-1.5-16.3z" fill="red"/><path d="M27 35l18-11-18-11z" fill="#fff"/></svg>
+              </a>
             </div>
           </div>
 
           <div class="card">
             <h3>Brain Break Mobile</h3>
             <div class="video-wrap">
-              <iframe src="brain-break-mobile-mockups.html" title="Brain Break Mobile — high-fidelity mockups" loading="lazy"></iframe>
+              <a href="brain-break-mobile-mockups.html" target="_blank" rel="noopener" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0e1117,#1a1c2e);">
+                <span style="font-size:48px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.6));">📱</span>
+              </a>
             </div>
-            <p style="color: var(--muted); font-size: 13px; margin: 12px 0 0;">
-              High-fidelity mockups of all 34 screens (Direction C: Balanced
-              Cards, dark theme, stack navigation).
-              <a href="brain-break-mobile-mockups.html" target="_blank" rel="noopener">Open in a new tab ↗</a>
-            </p>
           </div>
 
           <div class="card">
             <h3>Auto Garage</h3>
             <div class="video-wrap">
-              <div class="video-placeholder">Demo video coming soon — embed will be added here.</div>
+              <a href="https://youtu.be/pAJurNhnXLo" target="_blank" rel="noopener" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#000 url('https://img.youtube.com/vi/pAJurNhnXLo/hqdefault.jpg') center/cover no-repeat;">
+                <svg width="68" height="48" viewBox="0 0 68 48" style="filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 13 0 24 0 24s0 11 1.5 16.3a8.5 8.5 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35 68 24 68 24s0-11-1.5-16.3z" fill="red"/><path d="M27 35l18-11-18-11z" fill="#fff"/></svg>
+              </a>
             </div>
           </div>
         </div>
