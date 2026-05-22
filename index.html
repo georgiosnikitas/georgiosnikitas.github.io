@@ -534,9 +534,10 @@ brew install brain-break</code></pre>
               <li>👥 <strong>Customers</strong> — manage customer records (name, phone, history) with optional notes and 🎤 dictation.</li>
               <li>🚗 <strong>Vehicles</strong> — track vehicles linked to customers.</li>
               <li>🔧 <strong>Visits</strong> — log service visits and repair work with optional 🎤 speech-to-text dictation (browser-native, no external server).</li>
-              <li>⏰ <strong>Reminders</strong> — auto-generated reminders (last service + 1 year) with archive / restore.</li>
-              <li>📊 <strong>Statistics</strong> — aggregated insights with year filter: totals, vehicles by make/model, and per-vehicle revenue.</li>
-              <li>💾 <strong>Local storage</strong> — data persists in browser <code>localStorage</code>; no server needed.</li>
+              <li>📅 <strong>Appointments (Ραντεβού)</strong> — schedule upcoming customer appointments (date, customer, vehicle, service type, notes) with separate views for upcoming and past appointments, search, sort, and pagination. A 🛠️ action in the appointments list opens the New Visit modal pre-filled from the appointment (customer, vehicle, service type, date, and notes copied into the visit's extra work) so a booking can be converted to a logged visit in one click.</li>
+              <li>⏰ <strong>Reminders</strong> — auto-generated reminders with configurable duration (+3, +6, +12, +24, or +48 months since last service), with archive / restore.</li>
+              <li>📊 <strong>Statistics</strong> — aggregated insights with year and month filters: totals, vehicles by make/model, and per-vehicle revenue.</li>
+              <li>💾 <strong>Local storage</strong> — data persists in browser <code>localStorage</code>; no server needed (see Storage limits).</li>
               <li>📱 <strong>Responsive design</strong> — adapts to desktop, tablet, and mobile screens.</li>
               <li>📤 <strong>Data export</strong> — JSON export of all data.</li>
               <li>📥 <strong>Data import</strong> — JSON import to restore or migrate data.</li>
@@ -545,8 +546,9 @@ brew install brain-break</code></pre>
               <li>🎨 <strong>Theme toggle</strong> — switch between dark / light theme with modern gradient UI.</li>
               <li>👁️ <strong>Hide amounts</strong> — toggle to blur monetary values for over-the-shoulder privacy.</li>
               <li>📲 <strong>Install as app</strong> — installable PWA, works offline after first load (requires HTTPS).</li>
+              <li>🔒 <strong>Data &amp; Privacy</strong> — built-in privacy dialog explaining local-only storage, backup recommendations, and device sharing — no data leaves the browser.</li>
               <li>☕ <strong>Buy Me a Coffee</strong> — optional support link in the overflow menu.</li>
-              <li>🔑 <strong>License management</strong> — optional Lemon Squeezy license-key gate with hard-block UI and demo mode.</li>
+              <li>🔑 <strong>License management</strong> — optional Lemon Squeezy license-key gate with hard-block UI, demo mode, device deactivation, and key management.</li>
             </ul>
             </details>
             <details class="card-accordion" name="ag-sections">
