@@ -295,7 +295,7 @@
     <section class="hero" style="border-top: 0;">
       <div class="container">
         <h1>Practical software for individuals and small businesses.</h1>
-        <p>
+        <p style="max-width: none;">
           I'm an indie software maker shipping small, focused products in my
           own time — downloadable tools and lightweight web applications. Each
           one is designed to do one job well, with transparent one-time pricing
@@ -307,7 +307,7 @@
     <section id="products">
       <div class="container">
         <h2>Products</h2>
-        <p class="lede">
+        <p class="lede" style="max-width: none;">
           A focused lineup of products I design, build, and maintain myself —
           some ready to use today, others actively taking shape. Available
           releases are crafted with care for performance, privacy, and a clean
@@ -363,10 +363,15 @@
             <h3>Commit Whisper Single</h3>
             <div class="price">€10 <small>EUR · one-time</small></div>
             <p style="color: var(--muted); margin: 6px 0 0;">
-              <!-- TODO: product description -->
+              Deterministic git history analysis with a grounded,
+              bring-your-own-key AI narrative — a terminal-native CLI. Analyze
+              any local or remote repo and render insights to HTML, Markdown,
+              terminal, or JSON.
             </p>
             <ul>
-              <!-- TODO: feature bullets -->
+              <li>HTML, Markdown, terminal, and JSON output</li>
+              <li>Works with OpenAI, Anthropic, Gemini, Ollama, or any OpenAI-compatible endpoint</li>
+              <li>Single-user license; updates included for the purchased major version</li>
             </ul>
             <div class="actions">
               <span class="btn primary disabled" aria-disabled="true" title="Not yet available — coming soon">Buy a license</span>
@@ -381,10 +386,14 @@
             <h3>Commit Whisper Unlimited</h3>
             <div class="price">€100 <small>EUR · one-time</small></div>
             <p style="color: var(--muted); margin: 6px 0 0;">
-              <!-- TODO: product description -->
+              The same deterministic git history analysis and grounded,
+              bring-your-own-key AI narrative as Single, licensed for unlimited
+              users across a team or organization.
             </p>
             <ul>
-              <!-- TODO: feature bullets -->
+              <li>HTML, Markdown, terminal, and JSON output</li>
+              <li>Works with OpenAI, Anthropic, Gemini, Ollama, or any OpenAI-compatible endpoint</li>
+              <li>Unlimited-users license for teams; updates included for the purchased major version</li>
             </ul>
             <div class="actions">
               <span class="btn primary disabled" aria-disabled="true" title="Not yet available — coming soon">Buy a license</span>
@@ -421,7 +430,7 @@
     <section id="product-details">
       <div class="container">
         <h2>Details</h2>
-        <p class="lede">
+        <p class="lede" style="max-width: none;">
           Full feature breakdown, supported platforms, and what is included with
           each purchase.
         </p>
@@ -554,30 +563,48 @@ brew install brain-break</code></pre>
             <span class="tag">Commit Whisper · Coming soon</span>
             <h3>Commit Whisper</h3>
             <p style="color: var(--muted); margin: 6px 0 12px;">
-              <!-- TODO: product description -->
+              🕵️ I know what you did last commit. Commit Whisper
+              (<code>commit-whisper</code>) is a terminal-native CLI that
+              performs deterministic git history analysis with a grounded,
+              bring-your-own-key AI narrative. It analyzes a local or remote git
+              repository, computes a catalog of deterministic metrics — with no
+              AI — and, when an AI provider is configured, adds a grounded AI
+              narrative and coaching report. Output renders to HTML, Markdown,
+              terminal, and JSON from a single canonical Report JSON.
             </p>
             <details class="card-accordion" name="cw-sections">
             <summary>✨ Features</summary>
             <ul>
-              <!-- TODO: features -->
+              <li><strong>Deterministic metrics</strong> — a catalog of git history metrics computed with no AI</li>
+              <li><strong>Grounded AI narrative</strong> — optional bring-your-own-key AI narrative and coaching report, grounded in the computed metrics</li>
+              <li><strong>Multiple output formats</strong> — renders to HTML, Markdown, terminal, and JSON from a single canonical Report JSON</li>
+              <li><strong>Local &amp; remote repositories</strong> — analyze a repo on disk or clone and analyze a remote one</li>
+              <li><strong>Privacy-first</strong> — your BYOK AI keys and git tokens stay on your machine</li>
             </ul>
             </details>
             <details class="card-accordion" name="cw-sections">
             <summary>📋 Requirements</summary>
             <ul>
-              <!-- TODO: requirements -->
+              <li>Node.js &gt;= 22.0.0</li>
+              <li>npm (bundled with Node.js)</li>
+              <li>A system <code>git</code> available on <code>PATH</code></li>
+              <li>Optional: an AI provider configured with your own API key for the narrative and coaching report</li>
             </ul>
             </details>
             <details class="card-accordion" name="cw-sections">
             <summary>🚀 Platform &amp; delivery</summary>
             <ul>
-              <!-- TODO: platform & delivery -->
+              <li>Cross-platform CLI — runs on macOS, Linux, and Windows</li>
+              <li>Install from npm or Homebrew, or with a prebuilt self-contained binary (no Node.js required)</li>
+              <li>Updates included for the purchased major version</li>
             </ul>
             </details>
             <details class="card-accordion" name="cw-sections">
             <summary>📜 License</summary>
             <ul>
-              <!-- TODO: license -->
+              <li>MIT-licensed CLI and source code</li>
+              <li>Paid tiers — <strong>Single</strong> (single user) and <strong>Unlimited</strong> (unlimited users for teams) — enforced at runtime via an online license check</li>
+              <li>BYOK AI keys and git tokens stay on your machine; AI provider usage and any associated API costs are the buyer's responsibility</li>
             </ul>
             </details>
           </article>
@@ -650,12 +677,8 @@ brew install brain-break</code></pre>
     <section id="pricing">
       <div class="container">
         <h2>Pricing</h2>
-        <p class="lede">
-          Available products are sold as one-time purchases. There are no
-          recurring subscription fees. Planned prices for unreleased products
-          are shown for reference. Prices are in EUR and shown excluding VAT.
-          Lemon Squeezy will calculate and add any applicable VAT or sales tax
-          at checkout based on your location.
+        <p class="lede" style="max-width: none;">
+          Available products are sold as one-time purchases. There are no recurring subscription fees. Planned prices for unreleased products are shown for reference. Prices are in EUR and shown excluding VAT. Lemon Squeezy will calculate and add any applicable VAT or sales tax at checkout based on your location.
         </p>
 
         <div class="pricing-wrap">
