@@ -575,11 +575,30 @@ brew install brain-break</code></pre>
             <details class="card-accordion" name="cw-sections">
             <summary>✨ Features</summary>
             <ul>
-              <li><strong>Deterministic metrics</strong> — a catalog of git history metrics computed with no AI</li>
-              <li><strong>Grounded AI narrative</strong> — optional bring-your-own-key AI narrative and coaching report, grounded in the computed metrics</li>
-              <li><strong>Multiple output formats</strong> — renders to HTML, Markdown, terminal, and JSON from a single canonical Report JSON</li>
-              <li><strong>Local &amp; remote repositories</strong> — analyze a repo on disk or clone and analyze a remote one</li>
-              <li><strong>Privacy-first</strong> — your BYOK AI keys and git tokens stay on your machine</li>
+              <li><strong>Deterministic metrics (no AI)</strong> — six metric groups computed straight from git history, so the same repository always produces the same, verifiable numbers:
+                <ul>
+                  <li><strong>Group A · Cadence</strong> — commit frequency, timing, and activity rhythm over time</li>
+                  <li><strong>Group B · Contribution &amp; ownership</strong> — author contribution mix and how code ownership is distributed</li>
+                  <li><strong>Group C · Commit message quality</strong> — message length, structure, and convention signals</li>
+                  <li><strong>Group D · Branching &amp; merge structure</strong> — merge patterns and branch topology</li>
+                  <li><strong>Group E · Code churn &amp; hotspots</strong> — the files that change most often and where churn concentrates</li>
+                  <li><strong>Group F · Repository health signals</strong> — aggregate signals summarizing overall repository health</li>
+                </ul>
+              </li>
+              <li><strong>Grounded AI narrative &amp; coaching</strong> (optional, bring-your-own-key) — when an AI provider is configured, Commit Whisper layers an explanatory narrative and coaching report on top of the metrics, with safeguards that keep it anchored to the data:
+                <ul>
+                  <li><strong>Three-part narrative</strong> plus four-facet, per-metric explanations</li>
+                  <li><strong>Per-group batched generation</strong> for focused, relevant prose</li>
+                  <li><strong>Provider reachability preflight</strong> before any request is made</li>
+                  <li><strong>Deterministic grounding verification pass</strong> so every claim stays tied to the computed metrics</li>
+                  <li><strong>Confidence self-assessment</strong> with escalation when the model is unsure</li>
+                  <li><strong>Works with OpenAI, Anthropic, Gemini, Ollama, or any OpenAI-compatible endpoint</strong>, using your own API key</li>
+                </ul>
+              </li>
+              <li><strong>Multiple output formats</strong> — renders to HTML, Markdown, terminal, and JSON from a single canonical Report JSON, so every format stays consistent with the same underlying data</li>
+              <li><strong>Local &amp; remote repositories</strong> — analyze a repository on disk, or clone and analyze a remote one in a temporary workspace that is cleaned up afterward</li>
+              <li><strong>Terminal-native &amp; scriptable</strong> — a fast CLI with clear exit codes, equally suited to interactive use or automation in CI pipelines</li>
+              <li><strong>Privacy-first</strong> — the AI step is entirely optional, and your BYOK AI keys and git tokens never leave your machine</li>
             </ul>
             </details>
             <details class="card-accordion" name="cw-sections">
