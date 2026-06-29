@@ -423,7 +423,7 @@
               <a class="btn primary lemonsqueezy-button" href="https://georgiosnikitas.lemonsqueezy.com/checkout/buy/f1d3daba-0f44-4019-a9dd-b9b067cf3d34?embed=1">Buy a license</a>
               <a class="btn" href="#moodito-details">Learn more</a>
               <a class="btn" href="#demos">Watch demo</a>
-              <a class="btn" href="https://github.com/georgiosnikitas/moodito/releases" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#6ee7b7,#60a5fa);color:#0b0d12;border-color:transparent;font-weight:700;">⬇ Download</a>
+              <button class="btn" style="background:linear-gradient(135deg,#6ee7b7,#60a5fa);color:#0b0d12;border-color:transparent;font-weight:700;cursor:pointer;" onclick="navigator.clipboard.writeText('brew trust georgiosnikitas/moodito\nbrew tap georgiosnikitas/moodito\nbrew install --cask moodito').then(()=>{this.textContent='Copied! Paste in your terminal';setTimeout(()=>{this.textContent='📋 Install'},2000)})">📋 Install</button>
             </div>
           </article>
 
@@ -682,6 +682,11 @@ brew install commit-whisper</code></pre>
               or build it yourself from
               <a href="https://github.com/georgiosnikitas/moodito" target="_blank" rel="noopener">source</a>.
             </p>
+            <p style="color: var(--text); margin: 12px 0 6px;"><strong>⚙️ Installation</strong></p>
+            <p style="color: var(--muted); margin: 0 0 6px;">🍺 Homebrew (macOS)</p>
+<pre><code>brew trust georgiosnikitas/moodito
+brew tap georgiosnikitas/moodito
+brew install --cask moodito</code></pre>
             <details class="card-accordion" name="md-sections">
             <summary>✨ Features</summary>
             <ul>
