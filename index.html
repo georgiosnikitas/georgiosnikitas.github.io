@@ -406,6 +406,28 @@
           </article>
 
           <article class="card">
+            <span class="tag">macOS app · One-time purchase</span>
+            <h3>Moodito</h3>
+            <div class="price">€15 <small>EUR · one-time</small></div>
+            <p style="color: var(--muted); margin: 6px 0 0;">
+              A tiny, privacy-first macOS menu bar companion that reads your
+              face through the webcam and shows how you feel right now — as a
+              friendly emoji and label — entirely on-device.
+            </p>
+            <ul>
+              <li>Live emotion in the menu bar, on-device insights, charts, and an AI-powered wellbeing report</li>
+              <li>Bring your own AI provider — Anthropic, Gemini, OpenAI, any OpenAI-compatible endpoint, or local Ollama</li>
+              <li>Single-user personal license unlocking custom date ranges; updates included for the purchased major version</li>
+            </ul>
+            <div class="actions">
+              <a class="btn primary lemonsqueezy-button" href="https://georgiosnikitas.lemonsqueezy.com/checkout/buy/f1d3daba-0f44-4019-a9dd-b9b067cf3d34?embed=1">Buy a license</a>
+              <a class="btn" href="#moodito-details">Learn more</a>
+              <a class="btn" href="#demos">Watch demo</a>
+              <span class="btn disabled" aria-disabled="true" title="Demo coming soon">Demo coming soon</span>
+            </div>
+          </article>
+
+          <article class="card">
             <span class="tag">Web application · One-time license</span>
             <h3>Auto Garage</h3>
             <div class="price">€50 <small>EUR · one-time</small></div>
@@ -638,6 +660,70 @@ brew install commit-whisper</code></pre>
             </details>
           </article>
 
+          <article class="card" id="moodito-details">
+            <span class="tag">Moodito · Privacy-first macOS menu bar mood mirror</span>
+            <h3>Moodito</h3>
+            <p style="color: var(--muted); margin: 6px 0 12px;">
+              Moodito is a tiny, privacy-first macOS menu bar companion that
+              reads your face through the webcam and shows how you're feeling
+              right now — as a friendly emoji and label — without ever leaving
+              your Mac. No accounts, no cloud, no frames uploaded anywhere:
+              every detection happens 100% on-device. Beyond the live emoji, it
+              quietly builds a picture of your emotional day, turns it into
+              beautiful in-menu charts, and — if you connect your favourite AI
+              provider — writes you a personalised wellbeing report. Emotion
+              recognition is powered by Google's MediaPipe Face Landmarker,
+              mapping facial blendshapes to a small set of emotions: happy, sad,
+              surprised, angry, and neutral.
+            </p>
+            <p style="color: var(--muted); margin: 0 0 12px;">
+              📦 Download the standalone <code>Moodito.app</code> from the
+              <a href="https://github.com/georgiosnikitas/moodito/releases" target="_blank" rel="noopener">GitHub releases</a>,
+              or build it yourself from
+              <a href="https://github.com/georgiosnikitas/moodito" target="_blank" rel="noopener">source</a>.
+            </p>
+            <details class="card-accordion" name="md-sections">
+            <summary>✨ Features</summary>
+            <ul>
+              <li><strong>Live emotion in the menu bar</strong> — your current mood shown as an emoji + label (e.g. <code>😀 happy</code>), refreshed several times a second, with a Detected row showing the recognised emotion and its confidence</li>
+              <li><strong>Insights submenu</strong> — a rich, at-a-glance dashboard built entirely from your own on-device history: an activity chart by hour of day, a per-emotion heatmap, and a statistics table of time spent and occurrences for every state</li>
+              <li><strong>Selectable date range</strong> — insights cover a live, sliding Last 24 Hours window by default; with an active license you can compute them over any custom Since / Range you like</li>
+              <li><strong>AI-powered Mood Tip</strong> — ask your configured AI provider for a detailed, personalised wellbeing report over your selected range, and Save as PDF to export a polished, branded report with a full per-emotion breakdown</li>
+              <li><strong>Bring your own AI provider</strong> — connect Anthropic, Gemini, OpenAI, any OpenAI-compatible endpoint, or local Ollama; credentials are stored locally and a built-in Test button verifies the connection</li>
+              <li><strong>Adjustable sensitivity</strong> — fine-tune detection per emotion (Low / Normal / High) so Moodito reads your face the way you want</li>
+              <li><strong>Customisable display</strong> — toggle Show Emojis and Show Labels independently, or fall back to the clean Moodito icon</li>
+              <li><strong>Pause / Resume</strong> — instantly stop processing webcam frames whenever you want privacy or a break, with a one-click camera-access helper</li>
+              <li><strong>Export &amp; erase</strong> — download your raw detection log as CSV, or erase all collected data at any time. Your data, your call</li>
+            </ul>
+            </details>
+            <details class="card-accordion" name="md-sections">
+            <summary>📋 Requirements</summary>
+            <ul>
+              <li>macOS</li>
+              <li>A webcam</li>
+              <li>Python 3.11–3.13 when running from source (the standalone <code>Moodito.app</code> bundles its own runtime)</li>
+              <li>Optional: an AI provider configured with your own API key for the Mood Tip wellbeing report</li>
+            </ul>
+            </details>
+            <details class="card-accordion" name="md-sections">
+            <summary>🚀 Platform &amp; delivery</summary>
+            <ul>
+              <li>macOS menu-bar-only app — small, fast, and out of your way</li>
+              <li>Download the prebuilt <code>Moodito.app</code> from GitHub releases, or build it from source with the bundled script</li>
+              <li>Everything except the optional Mood Tip stays entirely on your Mac; only the Mood Tip contacts the AI provider you explicitly configure</li>
+              <li>Updates included for the purchased major version</li>
+            </ul>
+            </details>
+            <details class="card-accordion" name="md-sections">
+            <summary>📜 License</summary>
+            <ul>
+              <li>Single-user, personal-use license</li>
+              <li>A license unlocks custom date ranges for the Insights; without one, the insights stay pinned to the live Last 24 Hours window</li>
+              <li>Non-transferable; AI provider usage and any associated API costs are the buyer's responsibility</li>
+            </ul>
+            </details>
+          </article>
+
           <article class="card" id="auto-garage-details">
             <span class="tag">Auto Garage · Garage management system</span>
             <h3>Auto Garage</h3>
@@ -751,6 +837,13 @@ brew install commit-whisper</code></pre>
               <td data-label="Price">€100.00</td>
             </tr>
             <tr>
+              <td data-label="Product">Moodito</td>
+              <td data-label="Type">macOS app</td>
+              <td data-label="License">Single user, personal use</td>
+              <td data-label="Billing">One-time</td>
+              <td data-label="Price">€15.00</td>
+            </tr>
+            <tr>
               <td data-label="Product">Auto Garage</td>
               <td data-label="Type">Web application</td>
               <td data-label="License">Single small-business license</td>
@@ -820,6 +913,16 @@ brew install commit-whisper</code></pre>
           </div>
 
           <div class="card">
+            <h3>Moodito</h3>
+            <div class="video-wrap">
+              <a href="https://github.com/georgiosnikitas/moodito" target="_blank" rel="noopener" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0e1117,#1a1c2e);">
+                <span style="font-size:48px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.6));">🙂</span>
+              </a>
+            </div>
+            <span class="btn disabled" aria-disabled="true" title="Demo coming soon" style="margin-top:12px;justify-content:center;">⬇ Demo coming soon</span>
+          </div>
+
+          <div class="card">
             <h3>Auto Garage</h3>
             <div class="video-wrap">
               <a href="https://youtu.be/pAJurNhnXLo" target="_blank" rel="noopener" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#000 url('https://img.youtube.com/vi/pAJurNhnXLo/hqdefault.jpg') center/cover no-repeat;">
@@ -841,7 +944,8 @@ brew install commit-whisper</code></pre>
             After checkout on Lemon Squeezy, you receive a license key by
             email. Each product has its own delivery channel — Brain Break
             and Commit Whisper are installed from npm or Homebrew, Auto
-            Garage runs in your browser (or can be self-hosted), and Brain Break
+            Garage runs in your browser (or can be self-hosted), Moodito is
+            downloaded as a standalone macOS menu bar app, and Brain Break
             Mobile (when released) will be installed from the App Store or Google
             Play.
             All of them then use the same activation flow: open the app, paste
@@ -882,8 +986,9 @@ brew install commit-whisper</code></pre>
         <p>
           <strong style="color: var(--text);">What is sold:</strong> Small,
           self-contained software products. Some are downloadable command-line
-          tools (such as Brain Break and Commit Whisper), others are lightweight
-          web applications (such as Auto Garage).
+          tools (such as Brain Break and Commit Whisper), some are desktop apps
+          (such as Moodito), and others are lightweight web applications (such
+          as Auto Garage).
         </p>
         <p>
           <strong style="color: var(--text);">Who they are for:</strong>
